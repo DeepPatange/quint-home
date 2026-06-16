@@ -7,8 +7,6 @@ const cols = [
     links: [
       { href: "/shop?category=diffusers", label: "Diffusers" },
       { href: "/shop?category=oils", label: "Fragrance Oils" },
-      { href: "/shop?category=hotel", label: "Hotel Credential" },
-      { href: "/shop", label: "All Objects" },
     ],
   },
   {

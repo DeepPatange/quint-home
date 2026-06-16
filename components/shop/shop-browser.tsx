@@ -3,7 +3,7 @@
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Search, X } from "lucide-react";
+import { Search, X, ChevronDown } from "lucide-react";
 import { diffusers } from "@/lib/data/diffusers";
 import { oils } from "@/lib/data/oils";
 import { formatINR } from "@/lib/utils";
@@ -117,26 +117,28 @@ export function ShopBrowser() {
 
         {/* Controls — category selector + search, on one rule-divided row */}
         <div className="mt-7 flex flex-col gap-6 border-b border-[color:var(--color-rule)] pb-6 lg:flex-row lg:items-end lg:justify-between">
-          {/* Category pills */}
-          <div className="flex flex-wrap items-center gap-x-7 gap-y-3">
-            {CATEGORIES.map((c) => {
-              const active = category === c.key;
-              return (
-                <button
-                  key={c.key}
-                  type="button"
-                  onClick={() => setCategory(c.key)}
-                  aria-pressed={active}
-                  className={`border-b pb-1.5 text-[0.72rem] uppercase tracking-[0.24em] transition-colors duration-300 ${
-                    active
-                      ? "border-[color:var(--color-charcoal)] text-[color:var(--color-charcoal)]"
-                      : "border-transparent text-[color:var(--color-charcoal-soft)] hover:text-[color:var(--color-clay)]"
-                  }`}
-                >
+          {/* Category dropdown — future categories (reed diffusers, candles,
+              room sprays) live in lib/data/categories.ts, hidden until active. */}
+          <div className="relative inline-flex items-center">
+            <label htmlFor="shop-category" className="sr-only">
+              Category
+            </label>
+            <select
+              id="shop-category"
+              value={category}
+              onChange={(e) => setCategory(e.target.value as CategoryKey)}
+              className="cursor-pointer appearance-none border-b border-[color:var(--color-charcoal)] bg-transparent pb-1.5 pr-8 text-[0.72rem] uppercase tracking-[0.24em] text-[color:var(--color-charcoal)] focus:outline-none"
+            >
+              {CATEGORIES.map((c) => (
+                <option key={c.key} value={c.key}>
                   {c.label}
-                </button>
-              );
-            })}
+                </option>
+              ))}
+            </select>
+            <ChevronDown
+              className="pointer-events-none absolute bottom-2 right-1 h-4 w-4 text-[color:var(--color-charcoal-soft)]"
+              aria-hidden="true"
+            />
           </div>
 
           {/* Search field */}
