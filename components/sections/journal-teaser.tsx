@@ -6,7 +6,7 @@ import { SectionHeader } from "@/components/ui/section-header";
 
 export function JournalTeaser() {
   return (
-    <section className="bg-[color:var(--color-ivory)] py-[var(--spacing-section)]">
+    <section className="bg-[color:var(--color-ivory)] py-[var(--spacing-section-sm)]">
       <div className="mx-auto max-w-[var(--container-full)] px-6 md:px-10">
         <SectionHeader
           chapter="§ Seven"
@@ -29,11 +29,11 @@ export function JournalTeaser() {
           }
         />
 
-        <div className="mt-20 grid gap-12 md:grid-cols-3 md:gap-10">
+        <div className="mt-10 grid gap-10 md:grid-cols-3 md:gap-8">
           {journal.map((p, i) => (
             <FadeUp key={p.slug} delay={i * 0.08}>
               <Link href={`/journal/${p.slug}`} className="group block">
-                <div className="relative aspect-[5/6] overflow-hidden bg-[color:var(--color-aerial-soft)]">
+                <div className="relative aspect-[4/3] overflow-hidden bg-[color:var(--color-aerial-soft)]">
                   <Image
                     src={p.cover}
                     alt={p.title}
@@ -45,14 +45,14 @@ export function JournalTeaser() {
                     №{String(i + 1).padStart(2, "0")}
                   </div>
                 </div>
-                <p className="mt-7 text-[0.62rem] uppercase tracking-[0.32em] text-[color:var(--color-charcoal-soft)]">
+                <p className="mt-5 text-[0.6rem] uppercase tracking-[0.32em] text-[color:var(--color-charcoal-soft)]">
                   {p.eyebrow}
                 </p>
                 <h3
-                  className="mt-3 text-balance transition-colors duration-500 group-hover:text-[color:var(--color-clay)]"
+                  className="mt-2 text-balance transition-colors duration-500 group-hover:text-[color:var(--color-clay)]"
                   style={{
                     fontFamily: "var(--font-serif)",
-                    fontSize: "var(--text-xl)",
+                    fontSize: "var(--text-lg)",
                     lineHeight: 1.18,
                     letterSpacing: "-0.008em",
                     fontWeight: 400,
@@ -60,10 +60,10 @@ export function JournalTeaser() {
                 >
                   {p.title}
                 </h3>
-                <p className="mt-3 max-w-[44ch] text-[0.92rem] leading-[1.7] text-[color:var(--color-charcoal-soft)]">
+                <p className="mt-2 max-w-[44ch] text-[0.84rem] leading-[1.6] text-[color:var(--color-charcoal-soft)] line-clamp-2">
                   {p.excerpt}
                 </p>
-                <div className="mt-6 flex items-center gap-3 text-[0.6rem] uppercase tracking-[0.32em] text-[color:var(--color-charcoal-soft)]">
+                <div className="mt-4 flex items-center gap-3 text-[0.6rem] uppercase tracking-[0.32em] text-[color:var(--color-charcoal-soft)]">
                   <span>{p.readMinutes} min</span>
                   <span className="h-px w-6 bg-[color:var(--color-rule)]" />
                   <span>Read</span>
@@ -72,6 +72,20 @@ export function JournalTeaser() {
             </FadeUp>
           ))}
         </div>
+
+        <FadeUp delay={0.2}>
+          <div className="mt-12 flex justify-center">
+            <Link
+              href="/journal"
+              className="group inline-flex items-center gap-3 border-b border-[color:var(--color-charcoal)] pb-1.5 text-[0.72rem] uppercase tracking-[0.32em] transition-colors duration-500 hover:border-[color:var(--color-clay)] hover:text-[color:var(--color-clay)]"
+            >
+              Read more in the Journal
+              <span className="transition-transform duration-500 group-hover:translate-x-1">
+                →
+              </span>
+            </Link>
+          </div>
+        </FadeUp>
       </div>
     </section>
   );

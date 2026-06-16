@@ -149,20 +149,20 @@ export const oils: FragranceOil[] = [
     textColor: "#FAF8F3",
   },
   {
-    slug: "grand-lobby-hilton",
+    slug: "grand-lobby",
     name: "Grand Lobby",
     category: "oil",
     tier: "hotel-credential",
-    tagline: "Hilton lobby signature — recreated for home.",
+    tagline: "Grand-hotel lobby signature — recreated for home.",
     description:
-      "The exact composition you walk into at a Hilton's grand entrance — green tea, fig, white musk, the unmistakable scent of arrival. Now domesticated.",
+      "The composition you walk into at a grand hotel entrance — green tea, fig, white musk, the unmistakable scent of arrival. Now domesticated.",
     priceINR: 1999,
     volumeML: 100,
     credential: {
-      hotel: "Hilton",
+      hotel: "Grand Lobby",
       line: "Grand Lobby",
       story:
-        "Composed in collaboration with the Hilton scent program. The same molecule used across flagship properties worldwide.",
+        "The scent of arrival, composed in the language of a grand hotel lobby — the same depth and concentration, made for the home.",
     },
     notes: {
       top: ["Green Tea", "Bergamot", "Bamboo"],
@@ -170,7 +170,7 @@ export const oils: FragranceOil[] = [
       base: ["White Musk", "Cashmere Wood", "Ambrette"],
     },
     mood: "Welcoming, expansive, civic",
-    origin: "Hilton flagship properties",
+    origin: "Grand hotel lobbies",
     image: "/images/oils/oil-04.jpg",
     swatch: "#5A7370",
     textColor: "#FAF8F3",
@@ -180,16 +180,16 @@ export const oils: FragranceOil[] = [
     name: "The Carlton Room",
     category: "oil",
     tier: "hotel-credential",
-    tagline: "Ritz-Carlton inspired — warm and architectural.",
+    tagline: "Quietly architectural — warm and wood-panelled.",
     description:
-      "The wood-panelled hush of a Ritz-Carlton suite. Polished oak, a single lily, the warm shadow of a heavy curtain.",
+      "The wood-panelled hush of a grand hotel suite. Polished oak, a single lily, the warm shadow of a heavy curtain.",
     priceINR: 1999,
     volumeML: 100,
     credential: {
-      hotel: "Ritz-Carlton",
+      hotel: "The Carlton Room",
       line: "The Carlton Room",
       story:
-        "An architectural fragrance drawn from the Ritz-Carlton interior language — the warm authority of a private corridor at dusk.",
+        "An architectural fragrance drawn from grand-hotel interiors — the warm authority of a private corridor at dusk.",
     },
     notes: {
       top: ["Pink Pepper", "Pear", "Bergamot"],
@@ -197,7 +197,7 @@ export const oils: FragranceOil[] = [
       base: ["Sandalwood", "Vanilla", "Amber"],
     },
     mood: "Architectural, hushed, expensive",
-    origin: "Ritz-Carlton suites",
+    origin: "Grand hotel suites",
     image: "/images/oils/oil-07.jpg",
     swatch: "#3A3532",
     textColor: "#EEE4D8",

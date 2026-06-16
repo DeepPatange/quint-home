@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 const hotels = [
   {
     no: "01",
-    place: "Taj Lake Palace · Udaipur",
+    place: "A lake palace · Udaipur",
     year: "2023",
     image: "/images/vibe/vibe-07.jpg",
     note: "Warm jasmine, lake water, white marble after rain.",
@@ -21,7 +21,7 @@ const hotels = [
   },
   {
     no: "02",
-    place: "The Aria · Las Vegas",
+    place: "A casino hotel · Las Vegas",
     year: "2024",
     image: "/images/vibe/vibe-04.jpg",
     note: "Green tea, fig leaf, the cool authority of a casino lobby.",
@@ -30,7 +30,7 @@ const hotels = [
   },
   {
     no: "03",
-    place: "Four Seasons Safari Lodge · Serengeti",
+    place: "A safari lodge · Serengeti",
     year: "2024",
     image: "/images/vibe/vibe-03.jpg",
     note: "Baobab wood, wild earth, the Tanzanian plains at dusk.",
@@ -39,7 +39,7 @@ const hotels = [
   },
   {
     no: "04",
-    place: "Alila Fort Bishangarh · Rajasthan",
+    place: "A fort palace · Rajasthan",
     year: "2025",
     image: "/images/vibe/vibe-15.jpg",
     note: "Jasmine, ancient sandstone, 236 years of warrior fort.",
@@ -48,7 +48,7 @@ const hotels = [
   },
   {
     no: "05",
-    place: "The Ritz-Carlton · Nusa Dua, Bali",
+    place: "A beach resort · Nusa Dua, Bali",
     year: "2025",
     image: "/images/vibe/vibe-09.jpg",
     note: "Balinese frangipani, sea breeze, the Indian Ocean.",
@@ -224,74 +224,6 @@ export default function AboutPage() {
                 </div>
               </FadeUp>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ====================================================
-          §  THREE — VISION
-          ==================================================== */}
-      <section className="bg-[color:var(--color-verdant)] py-[var(--spacing-section)] text-[color:var(--color-stardust)]">
-        <div className="mx-auto max-w-[var(--container-full)] px-6 md:px-10">
-          <FadeUp>
-            <div className="mb-12 flex items-center gap-4 text-[0.6rem] uppercase tracking-[0.42em] text-[color:var(--color-stardust)]/65">
-              <span className="h-px w-12 bg-[color:var(--color-stardust)]/25" />
-              <span>§ Three · The Vision</span>
-              <span className="h-px flex-1 bg-[color:var(--color-stardust)]/15" />
-            </div>
-          </FadeUp>
-
-          <div className="grid gap-12 md:grid-cols-12 md:gap-16">
-            <FadeUp className="md:col-span-7">
-              <h2
-                className="text-balance text-[color:var(--color-stardust)]"
-                style={{
-                  fontFamily: "var(--font-serif)",
-                  fontSize: "var(--text-4xl)",
-                  lineHeight: 1.06,
-                  letterSpacing: "-0.022em",
-                  fontWeight: 400,
-                }}
-              >
-                To become India&rsquo;s defining premium scenting brand —{" "}
-                <em className="not-italic text-[color:var(--color-aerial-soft)]">
-                  and then to take it global.
-                </em>
-              </h2>
-            </FadeUp>
-
-            <FadeUp delay={0.1} className="md:col-span-5">
-              <dl className="grid gap-10">
-                <div>
-                  <dt className="text-[0.6rem] uppercase tracking-[0.32em] text-[color:var(--color-stardust)]/55">
-                    In five years
-                  </dt>
-                  <dd className="mt-3 text-[var(--text-base)] leading-[1.7]" style={{ color: "rgba(238, 228, 216, 0.85)" }}>
-                    A nationally recognised brand. Diffusers and oils in
-                    homes, restaurants, hotels, malls, and offices across
-                    India.
-                  </dd>
-                </div>
-                <div>
-                  <dt className="text-[0.6rem] uppercase tracking-[0.32em] text-[color:var(--color-stardust)]/55">
-                    In ten to twenty
-                  </dt>
-                  <dd className="mt-3 text-[var(--text-base)] leading-[1.7]" style={{ color: "rgba(238, 228, 216, 0.85)" }}>
-                    Indian-curated, hotel-grade fragrance culture exported to
-                    UAE, Singapore, the UK, and the wider diaspora.
-                  </dd>
-                </div>
-                <div>
-                  <dt className="text-[0.6rem] uppercase tracking-[0.32em] text-[color:var(--color-stardust)]/55">
-                    Today
-                  </dt>
-                  <dd className="mt-3 text-[var(--text-base)] leading-[1.7]" style={{ color: "rgba(238, 228, 216, 0.85)" }}>
-                    Designed in Mumbai. D2C through this site, with a B2B
-                    channel for architects and hospitality.
-                  </dd>
-                </div>
-              </dl>
-            </FadeUp>
           </div>
         </div>
       </section>

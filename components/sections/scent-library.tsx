@@ -31,7 +31,7 @@ export function ScentLibrary() {
           }
         />
 
-        <div className="mt-20 grid gap-px overflow-hidden bg-[color:var(--color-rule)] sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-12 grid grid-cols-2 gap-px overflow-hidden bg-[color:var(--color-rule)] md:grid-cols-3 lg:grid-cols-5">
           {oils.map((o, i) => {
             // Every other tile is a photographic plate; rest are colored swatches.
             const photographic = i % 2 === 0;
@@ -46,7 +46,7 @@ export function ScentLibrary() {
               <FadeUp key={o.slug} delay={i * 0.04} className="contents">
                 <Link
                   href={`/shop/${o.slug}`}
-                  className="group relative flex aspect-[4/5] flex-col justify-between overflow-hidden p-7 transition-[padding] duration-700"
+                  className="group relative flex aspect-[4/5] flex-col justify-between overflow-hidden p-4 transition-[padding] duration-700"
                   style={tileBg}
                 >
                   {photographic && (
@@ -55,7 +55,7 @@ export function ScentLibrary() {
                         src={o.image}
                         alt={`${o.name} — bottle study`}
                         fill
-                        sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                        sizes="(min-width: 1024px) 20vw, (min-width: 768px) 33vw, 50vw"
                         className="object-cover transition-transform duration-[1800ms] ease-[var(--ease-quint)] group-hover:scale-[1.04]"
                       />
                       <div
@@ -73,36 +73,34 @@ export function ScentLibrary() {
                   <div className={`relative flex items-start justify-between text-[0.6rem] uppercase tracking-[0.32em] opacity-80 ${fg}`}>
                     <span>№{String(i + 1).padStart(2, "0")}</span>
                     {o.tier === "hotel-credential" && (
-                      <span className="rounded-full border border-current px-3 py-1 text-[0.54rem]">
+                      <span className="rounded-full border border-current px-2 py-0.5 text-[0.5rem]">
                         Hotel Credential
                       </span>
                     )}
                   </div>
 
-                  {/* Center / bottom name (centered on swatch, anchored to bottom on photographic) */}
-                  <div className={`relative ${photographic ? "mt-auto" : "my-auto"}`}>
+                  {/* Bottom text — name folded into the label group (no large heading) */}
+                  <div className={`relative mt-auto ${fg}`}>
                     <h3
-                      className={`text-balance transition-transform duration-700 ease-[var(--ease-quint)] group-hover:-translate-y-1 ${fg}`}
+                      className="transition-transform duration-700 ease-[var(--ease-quint)] group-hover:-translate-y-0.5"
                       style={{
                         fontFamily: "var(--font-serif)",
-                        fontSize: "var(--text-3xl)",
-                        lineHeight: 1,
-                        letterSpacing: "-0.022em",
+                        fontSize: "0.95rem",
+                        lineHeight: 1.15,
+                        letterSpacing: "-0.01em",
                         fontWeight: 400,
                       }}
                     >
                       {o.name}
                     </h3>
-                    <p className={`mt-4 max-w-[28ch] text-[0.84rem] leading-[1.55] opacity-80 ${fg}`}>
+                    <p className="mt-1.5 max-w-[26ch] text-[0.66rem] leading-[1.4] opacity-75">
                       {o.tagline}
                     </p>
-
-                    {/* Bottom row sits right after name on photographic tiles */}
-                    <div className={`mt-5 flex items-end justify-between gap-4 opacity-80 ${fg}`}>
-                      <span className="text-[0.62rem] uppercase tracking-[0.28em]">
+                    <div className="mt-2.5 flex items-end justify-between gap-3 opacity-80">
+                      <span className="text-[0.56rem] uppercase tracking-[0.24em]">
                         {o.notes.heart[0]} · {o.notes.base[0]}
                       </span>
-                      <span className="text-[0.78rem] tabular-nums">
+                      <span className="text-[0.72rem] tabular-nums">
                         {formatINR(o.priceINR)}
                       </span>
                     </div>

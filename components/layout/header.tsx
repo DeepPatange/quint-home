@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
 import { Menu, Search, ShoppingBag } from "lucide-react";
 import { Logo } from "@/components/brand/logo";
 import { cn } from "@/lib/utils";
@@ -10,36 +11,108 @@ const navLinks = [
   { href: "/shop", label: "Shop" },
   { href: "/about", label: "About" },
   { href: "/journal", label: "Journal" },
-  { href: "/architects", label: "For Architects" },
+  { href: "/businesses", label: "For Businesses" },
 ];
 
 export function Header() {
-  const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
+  // Only the homepage has a full-bleed banner for the header to merge into.
+  const overlay = pathname === "/";
+
+  const [hidden, setHidden] = useState(false);
+  const [hovered, setHovered] = useState(false);
+  const [pastHero, setPastHero] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [slideHidden, setSlideHidden] = useState(false);
+  const lastY = useRef(0);
+  const headerRef = useRef<HTMLElement>(null);
+
+  // On the homepage the header stays transparent and merged into the banner for
+  // the WHOLE hero. The solid header only exists *below* the hero — and there it
+  // hides on scroll-down and slides back on scroll-up. Inner pages are always solid.
+  const transparent = overlay && !pastHero && !hovered && !mobileOpen;
 
   useEffect(() => {
     function onScroll() {
-      setScrolled(window.scrollY > 24);
+      const y = window.scrollY;
+
+      // Has the hero scrolled up behind the header yet? (homepage only)
+      let past = !overlay;
+      if (overlay) {
+        const hero = document.getElementById("hero");
+        const headerH = headerRef.current?.offsetHeight ?? 80;
+        past = hero
+          ? hero.getBoundingClientRect().bottom <= headerH
+          : y > window.innerHeight * 0.9;
+      }
+      setPastHero(past);
+
+      // The header is never pinned: it leaves the moment you scroll down
+      // (over the hero and everywhere) so the descent feels header-less, and
+      // slides back the instant you scroll up. Shown only at the very top.
+      const delta = y - lastY.current;
+      if (y <= 4 || delta < -4) {
+        setHidden(false);
+      } else if (delta > 4) {
+        setHidden(true);
+      }
+      lastY.current = y;
     }
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, [overlay]);
+
+  // Publish the real header height so the banner can sit exactly behind it.
+  useEffect(() => {
+    function measure() {
+      const h = headerRef.current?.offsetHeight;
+      if (h) document.documentElement.style.setProperty("--header-h", `${h}px`);
+    }
+    measure();
+    window.addEventListener("resize", measure);
+    return () => window.removeEventListener("resize", measure);
   }, []);
 
   useEffect(() => {
     document.documentElement.style.overflow = mobileOpen ? "hidden" : "";
   }, [mobileOpen]);
 
+  // A hero slide can ask the header to step aside (e.g. the water video).
+  useEffect(() => {
+    const onHide = (e: Event) => setSlideHidden(!!(e as CustomEvent).detail);
+    window.addEventListener("quint:hide-header", onHide);
+    return () => window.removeEventListener("quint:hide-header", onHide);
+  }, []);
+
   return (
     <>
       <header
+        ref={headerRef}
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
         className={cn(
-          "sticky top-0 z-40 border-b text-[color:var(--color-charcoal)] transition-[background-color,backdrop-filter,border-color] duration-500",
-          scrolled
-            ? "border-[color:var(--color-rule)] bg-[color:var(--color-white)]/90 backdrop-blur-xl"
-            : "border-transparent bg-[color:var(--color-white)]"
+          "sticky top-0 z-40 will-change-transform",
+          transparent
+            ? "bg-transparent text-[color:var(--color-white)]"
+            : "bg-[color:var(--color-white)]/85 text-[color:var(--color-charcoal)] backdrop-blur-xl",
+          (hidden || slideHidden) && !mobileOpen
+            ? "-translate-y-full"
+            : "translate-y-0"
         )}
-        style={{ transitionTimingFunction: "var(--ease-quint)" }}
+        style={{
+          // Float over the banner on the homepage (negate our own height).
+          marginBottom: overlay ? "calc(var(--header-h) * -1)" : undefined,
+          // Reveal (coming back down) eases in slowly; hiding is quicker.
+          // Background + text colour cross-fade as the panel appears.
+          transition: `transform ${
+            hidden ? "450ms" : "900ms"
+          } var(--ease-quint), background-color 500ms var(--ease-quint), backdrop-filter 500ms var(--ease-quint), color 500ms var(--ease-quint)`,
+        }}
       >
         <div className="mx-auto grid max-w-[var(--container-full)] grid-cols-[1fr_auto_1fr] items-center gap-6 px-6 py-5 md:px-10">
           {/* Left nav */}
@@ -119,7 +192,7 @@ export function Header() {
               <Logo className="h-7 w-auto text-[color:var(--color-charcoal)]" />
               <button
                 onClick={() => setMobileOpen(false)}
-                className="text-[0.78rem] uppercase tracking-[0.18em]"
+                className="text-[0.78rem] uppercase tracking-[0.18em] text-[color:var(--color-charcoal)]"
                 aria-label="Close menu"
               >
                 Close

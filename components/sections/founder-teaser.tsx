@@ -59,7 +59,7 @@ export function FounderTeaser() {
           <div className="md:col-span-6 md:pl-2 lg:pl-8">
             <FadeUp>
               <p className="text-[0.62rem] uppercase tracking-[0.42em] text-[color:var(--color-charcoal-soft)]">
-                § Six · Founder Letter
+                Founder · A Letter
               </p>
             </FadeUp>
 
@@ -74,29 +74,46 @@ export function FounderTeaser() {
                   fontWeight: 400,
                 }}
               >
-                It started in a corridor at the Taj.
+                It started in Udaipur.
               </h2>
             </FadeUp>
 
             <FadeUp delay={0.16}>
               <div className="mt-8 space-y-5 text-[var(--text-base)] leading-[1.85] text-[color:var(--color-charcoal-soft)]">
                 <p className="max-w-[52ch] [&::first-letter]:float-left [&::first-letter]:mr-2 [&::first-letter]:font-[family-name:var(--font-serif)] [&::first-letter]:text-[3.2rem] [&::first-letter]:font-normal [&::first-letter]:leading-[0.9] [&::first-letter]:text-[color:var(--color-charcoal)]">
-                  I stood there for a while. The fragrance was everywhere and
-                  nowhere. It wasn&rsquo;t a candle. It wasn&rsquo;t a spray. It
-                  was woven into the air of the entire palace — warm,
-                  unhurried, unlike anything I&rsquo;d ever smelled in
-                  someone&rsquo;s home.
+                  Three years ago, I checked into one of India&rsquo;s most
+                  celebrated hotels in Udaipur. I expected beauty — the
+                  architecture, the lake, the service. What I didn&rsquo;t
+                  expect was to stop in the corridor and simply stand there,
+                  trying to understand what I was breathing.
                 </p>
                 <p className="max-w-[52ch]">
-                  I asked the staff. They smiled politely. The scent, they
-                  explained, was proprietary. I went home and spent weeks
-                  trying to source it. I couldn&rsquo;t.
+                  The fragrance was everywhere and nowhere. It wasn&rsquo;t a
+                  candle. It wasn&rsquo;t a spray. It was woven into the air of
+                  the entire palace — warm, unhurried, completely unlike
+                  anything I had ever smelled in someone&rsquo;s home. I asked
+                  the staff. They smiled politely. The scent, they explained,
+                  was proprietary. I went home and spent weeks trying to source
+                  it anyway. I couldn&rsquo;t.
                 </p>
                 <p className="max-w-[52ch]">
-                  Las Vegas, a year later. The Aria. The Four Seasons in the
-                  Serengeti. Alila Fort Bishangarh. The Ritz-Carlton in Nusa
-                  Dua. Each one, the same arrested moment. Each one, the same
-                  answer.
+                  Las Vegas, a year later — a luxury casino hotel on the Strip.
+                  A different continent, the same arrested moment in a lobby. It
+                  kept happening: a safari lodge in the Serengeti, warm with
+                  baobab wood and wild earth; a beach hotel in Nusa Dua,
+                  Balinese frangipani on a sea breeze. Each time I tried to find
+                  the scent. Each time: proprietary.
+                </p>
+                <p className="max-w-[52ch]">
+                  Hotels understand something most of us don&rsquo;t. Scent is
+                  the invisible layer of luxury — it sets the tone before you
+                  see anything, before you touch anything. So why do we accept
+                  that our homes, where we spend the majority of our lives,
+                  smell like nothing in particular?
+                </p>
+                <p className="max-w-[52ch] text-[color:var(--color-charcoal)]">
+                  Quint Home exists because I couldn&rsquo;t stop thinking about
+                  that.
                 </p>
               </div>
             </FadeUp>
@@ -107,13 +124,13 @@ export function FounderTeaser() {
                   href="/about"
                   className="group inline-flex items-center gap-3 border-b border-[color:var(--color-charcoal)] pb-1.5 text-[0.72rem] uppercase tracking-[0.32em] transition-colors duration-500 hover:text-[color:var(--color-clay)] hover:border-[color:var(--color-clay)]"
                 >
-                  Continue the letter
+                  More on the founder
                   <span className="transition-transform duration-500 group-hover:translate-x-1">
                     →
                   </span>
                 </Link>
                 <span className="text-[0.6rem] uppercase tracking-[0.32em] text-[color:var(--color-charcoal-soft)]">
-                  4 min · Journal
+                  Mumbai · 2023
                 </span>
               </div>
 

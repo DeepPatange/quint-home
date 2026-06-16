@@ -16,7 +16,7 @@ const cols = [
     links: [
       { href: "/about", label: "About" },
       { href: "/journal", label: "Journal" },
-      { href: "/architects", label: "For Architects" },
+      { href: "/businesses", label: "For Businesses" },
       { href: "/contact", label: "Contact" },
     ],
   },

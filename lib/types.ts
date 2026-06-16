@@ -7,7 +7,7 @@ export interface ScentNotes {
 }
 
 export interface HotelCredential {
-  hotel: "Hilton" | "Ritz-Carlton";
+  hotel: string;
   line: string;
   story: string;
 }

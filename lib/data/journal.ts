@@ -2,16 +2,16 @@ import type { JournalPost } from "../types";
 
 export const journal: JournalPost[] = [
   {
-    slug: "the-taj-lake-palace",
-    title: "The Taj Lake Palace, and the question that started Quint Home",
+    slug: "the-lake-palace-udaipur",
+    title: "A lake palace in Udaipur, and the question that started Quint Home",
     eyebrow: "Founder Letter",
     excerpt:
       "Three years ago, I checked into one of India's most celebrated hotels in Udaipur. What I didn't expect was to stop in the corridor and stand there, trying to understand what I was breathing.",
     body: [
       "The fragrance was everywhere and nowhere. It wasn't a candle. It wasn't a spray. It was woven into the air of the entire palace — warm, unhurried, completely unlike anything I had ever smelled in someone's home.",
       "I asked the staff. They smiled politely. The scent, they explained, was proprietary.",
-      "Las Vegas, a year later. The Aria. A different continent, a different aesthetic — but the same arrested moment in a lobby. Same answer.",
-      "It kept happening. The Four Seasons Safari Lodge in the Serengeti — warm baobab wood and wild earth. Alila Fort Bishangarh in Rajasthan — jasmine and ancient stone, a 236-year-old warrior fort reimagined into something quietly sacred. The Ritz-Carlton in Nusa Dua — Balinese frangipani on a sea breeze.",
+      "Las Vegas, a year later — a luxury casino hotel on the Strip. A different continent, a different aesthetic, but the same arrested moment in a lobby. Same answer.",
+      "It kept happening. A safari lodge in the Serengeti — warm baobab wood and wild earth. A fort palace in Rajasthan — jasmine and ancient stone, a centuries-old warrior fort reimagined into something quietly sacred. A beach resort in Nusa Dua — Balinese frangipani on a sea breeze.",
       "Each time, I tried to find the scent. Each time: proprietary.",
       "Hotels understand something most of us don't. Scent is the invisible layer of luxury. It sets the tone before you see anything, before you touch anything. So why do we accept that our homes — the spaces where we spend the majority of our lives — smell like nothing in particular?",
       "Quint Home exists because I couldn't stop thinking about that.",

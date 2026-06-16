@@ -39,8 +39,8 @@ const groups = [
         a: "Yes — every Quint Home oil is composed to IFRA (International Fragrance Association) standards. Safe around children and pets when used as directed.",
       },
       {
-        q: "What does a hotel-credential oil mean?",
-        a: "Two of our nine oils — Grand Lobby and The Carlton Room — are licensed from the scent programs of the Hilton and Ritz-Carlton respectively. Same molecule, same composition, now available for home.",
+        q: "What does a hotel-grade oil mean?",
+        a: "Two of our nine oils — Grand Lobby and The Carlton Room — are composed to the standard of a grand hotel's signature scent: the same depth, concentration, and longevity you remember from a great lobby, now made for the home.",
       },
     ],
   },

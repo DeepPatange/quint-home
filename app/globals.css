@@ -67,6 +67,9 @@
   --container-wide: 88rem;
   --container-full: 100rem;
 
+  /* — Header height (refined at runtime by the Header via JS) - */
+  --header-h: 80px;
+
   /* — Radius — soft, restrained ----------------------------- */
   --radius-xs: 2px;
   --radius-sm: 4px;
@@ -250,6 +253,19 @@
 
 .animate-hero-zoom {
   animation: hero-zoom 2.4s var(--ease-quint) both;
+}
+
+/* Slow, continuous banner drift — keeps the hero alive without distracting. */
+@keyframes hero-drift {
+  from {
+    transform: scale(1.02);
+  }
+  to {
+    transform: scale(1.08);
+  }
+}
+.animate-hero-drift {
+  animation: hero-drift 26s ease-in-out infinite alternate;
 }
 
 @keyframes scroll-tick {

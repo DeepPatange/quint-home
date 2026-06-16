@@ -119,11 +119,11 @@ export default function ContactPage() {
 
             <FadeUp className="contents">
               <Link
-                href="/architects"
+                href="/businesses"
                 className="group flex flex-col justify-between gap-12 bg-[color:var(--color-white)] p-8 transition-colors duration-500 hover:bg-[color:var(--color-stardust-soft)] md:min-h-[360px]"
               >
                 <p className="text-[0.62rem] uppercase tracking-[0.42em] text-[color:var(--color-charcoal-soft)]">
-                  № 03 · Trade
+                  № 03 · Business
                 </p>
                 <div>
                   <p
@@ -136,11 +136,11 @@ export default function ContactPage() {
                       fontWeight: 400,
                     }}
                   >
-                    For Architects
+                    For Businesses
                   </p>
                   <p className="mt-3 max-w-[36ch] text-[0.92rem] leading-[1.65] text-[color:var(--color-charcoal-soft)]">
-                    For interior architects, designers, and hospitality
-                    specifiers. Project pricing, commercial machines.
+                    Commercial machines, bulk orders, and personalized scent
+                    development for hotels, restaurants, retail, and offices.
                   </p>
                   <p className="mt-7 text-[0.6rem] uppercase tracking-[0.32em] text-[color:var(--color-charcoal-soft)] transition-transform duration-500 group-hover:translate-x-1">
                     Trade enquiries →
