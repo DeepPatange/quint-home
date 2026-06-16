@@ -146,8 +146,7 @@ export function Hero() {
           <span>Hotel-grade fragrance</span>
           <span className="hidden md:inline">Waterless · Silent</span>
           <span className="hidden md:inline">App-controlled</span>
-          <span className="hidden md:inline">IFRA-compliant · 70–90%</span>
-          <span>Made in India</span>
+          <span>IFRA-compliant · 70–90%</span>
         </div>
       </div>
     </section>

@@ -115,7 +115,7 @@ export function Footer() {
         {/* Baseline */}
         <div className="mt-20 flex flex-col-reverse items-start justify-between gap-4 border-t border-[color:var(--color-rule)] pt-6 text-[0.72rem] uppercase tracking-[0.18em] text-[color:var(--color-charcoal-soft)] md:flex-row md:items-center">
           <span>© {new Date().getFullYear()} Quint Home · Air Elevated</span>
-          <span>IFRA-compliant · Made in India</span>
+          <span>IFRA-compliant</span>
         </div>
       </div>
     </footer>
