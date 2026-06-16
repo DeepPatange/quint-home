@@ -1,9 +1,10 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Search, X, ChevronDown } from "lucide-react";
+import { Monogram } from "@/components/brand/logo";
 import { diffusers } from "@/lib/data/diffusers";
 import { oils } from "@/lib/data/oils";
 import { formatINR } from "@/lib/utils";
@@ -89,6 +90,30 @@ const ITEMS: BrowseItem[] = [
 export function ShopBrowser() {
   const [category, setCategory] = useState<CategoryKey>("all");
   const [query, setQuery] = useState("");
+  const [open, setOpen] = useState(false);
+  const ddRef = useRef<HTMLDivElement>(null);
+
+  // Close the category menu on outside click or Escape.
+  useEffect(() => {
+    if (!open) return;
+    function onDown(e: MouseEvent) {
+      if (ddRef.current && !ddRef.current.contains(e.target as Node)) {
+        setOpen(false);
+      }
+    }
+    function onKey(e: KeyboardEvent) {
+      if (e.key === "Escape") setOpen(false);
+    }
+    window.addEventListener("mousedown", onDown);
+    window.addEventListener("keydown", onKey);
+    return () => {
+      window.removeEventListener("mousedown", onDown);
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [open]);
+
+  const currentLabel =
+    CATEGORIES.find((c) => c.key === category)?.label ?? "Everything";
 
   const results = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -119,26 +144,66 @@ export function ShopBrowser() {
         <div className="mt-7 flex flex-col gap-6 border-b border-[color:var(--color-rule)] pb-6 lg:flex-row lg:items-end lg:justify-between">
           {/* Category dropdown — future categories (reed diffusers, candles,
               room sprays) live in lib/data/categories.ts, hidden until active. */}
-          <div className="relative inline-flex items-center">
-            <label htmlFor="shop-category" className="sr-only">
-              Category
-            </label>
-            <select
-              id="shop-category"
-              value={category}
-              onChange={(e) => setCategory(e.target.value as CategoryKey)}
-              className="cursor-pointer appearance-none border-b border-[color:var(--color-charcoal)] bg-transparent pb-1.5 pr-8 text-[0.72rem] uppercase tracking-[0.24em] text-[color:var(--color-charcoal)] focus:outline-none"
+          <div className="relative" ref={ddRef}>
+            <button
+              type="button"
+              onClick={() => setOpen((o) => !o)}
+              aria-haspopup="listbox"
+              aria-expanded={open}
+              className="group inline-flex min-w-[12rem] items-center justify-between gap-6 border-b border-[color:var(--color-charcoal)] pb-2 text-left text-[0.72rem] uppercase tracking-[0.24em] text-[color:var(--color-charcoal)] transition-colors duration-300"
             >
-              {CATEGORIES.map((c) => (
-                <option key={c.key} value={c.key}>
-                  {c.label}
-                </option>
-              ))}
-            </select>
-            <ChevronDown
-              className="pointer-events-none absolute bottom-2 right-1 h-4 w-4 text-[color:var(--color-charcoal-soft)]"
-              aria-hidden="true"
-            />
+              <span className="flex items-center gap-2.5">
+                <Monogram
+                  className="h-4 w-4 shrink-0 text-[color:var(--color-aerial)]"
+                  aria-hidden="true"
+                />
+                <span>{currentLabel}</span>
+              </span>
+              <ChevronDown
+                className={`h-4 w-4 text-[color:var(--color-charcoal-soft)] transition-transform duration-300 ease-[var(--ease-quint)] ${
+                  open ? "rotate-180 text-[color:var(--color-clay)]" : ""
+                }`}
+                aria-hidden="true"
+              />
+            </button>
+
+            <ul
+              role="listbox"
+              className={`absolute left-0 top-full z-30 mt-3 w-[16rem] origin-top overflow-hidden border border-[color:var(--color-rule)] bg-[color:var(--color-white)] shadow-[0_18px_50px_-20px_rgba(58,53,50,0.28)] transition-all duration-300 ease-[var(--ease-quint)] ${
+                open
+                  ? "pointer-events-auto translate-y-0 opacity-100"
+                  : "pointer-events-none -translate-y-2 opacity-0"
+              }`}
+            >
+              {CATEGORIES.map((c) => {
+                const active = category === c.key;
+                return (
+                  <li key={c.key}>
+                    <button
+                      type="button"
+                      role="option"
+                      aria-selected={active}
+                      onClick={() => {
+                        setCategory(c.key);
+                        setOpen(false);
+                      }}
+                      className={`flex w-full items-center justify-between gap-4 px-5 py-3.5 text-left text-[0.72rem] uppercase tracking-[0.24em] transition-colors duration-200 ${
+                        active
+                          ? "bg-[color:var(--color-stardust-soft)] text-[color:var(--color-charcoal)]"
+                          : "text-[color:var(--color-charcoal-soft)] hover:bg-[color:var(--color-stardust-soft)] hover:text-[color:var(--color-clay)]"
+                      }`}
+                    >
+                      {c.label}
+                      <span
+                        className={`h-1.5 w-1.5 rounded-full bg-[color:var(--color-clay)] transition-opacity duration-200 ${
+                          active ? "opacity-100" : "opacity-0"
+                        }`}
+                      />
+                    </button>
+                  </li>
+                );
+              })}
+            </ul>
           </div>
 
           {/* Search field */}

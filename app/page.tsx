@@ -5,6 +5,8 @@ import { Atmosphere } from "@/components/sections/atmosphere";
 import { SmartHome } from "@/components/sections/smart-home";
 import { FounderTeaser } from "@/components/sections/founder-teaser";
 import { JournalTeaser } from "@/components/sections/journal-teaser";
+import { Reviews } from "@/components/sections/reviews";
+import { MonogramDivider } from "@/components/brand/monogram-divider";
 
 export default function Home() {
   return (
@@ -18,8 +20,10 @@ export default function Home() {
       <SmartHome />
       <DiffuserShowcase />
       <ScentLibrary />
+      <MonogramDivider className="py-[var(--spacing-section-sm)]" />
       <FounderTeaser />
       <Atmosphere />
+      <Reviews />
       <JournalTeaser />
     </>
   );
