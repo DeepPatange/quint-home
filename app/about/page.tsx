@@ -25,13 +25,6 @@ const FOUNDER_STORY = [
 const FOUNDER_CLOSING =
   "Quint Home exists because I couldn't stop thinking about that.";
 
-// Vision — verbatim, as supplied.
-const VISION = [
-  "We want to create a world where beautifully engineered diffusers and the finest fragrance oils come together seamlessly — making scent an effortless, living part of every room. Our vision is to become India's defining premium scenting brand — transforming the way homes, restaurants, hotels and stores use and experience fragrance.",
-  "We hold every product to an uncompromising standard: diffusers that perform consistently, and oils with the depth and strength to fill a room and stay there.",
-  "We serve individual customers looking to elevate their home, and commercial spaces that want a signature scent their customers will remember.",
-];
-
 // Udaipur — the founding palace, where the story begins.
 const UDAIPUR = [
   "/images/udaipur/udaipur-1.webp",
@@ -40,6 +33,45 @@ const UDAIPUR = [
   "/images/udaipur/udaipur-4.webp",
   "/images/udaipur/udaipur-5.webp",
   "/images/udaipur/udaipur-6.webp",
+];
+
+// The journey — the verbatim story laid out as a timeline of stops.
+const STOPS = [
+  {
+    no: "01",
+    place: "Udaipur",
+    year: "2023",
+    images: true,
+    paragraphs: [FOUNDER_STORY[0], FOUNDER_STORY[1], FOUNDER_STORY[2]],
+  },
+  {
+    no: "02",
+    place: "Las Vegas",
+    year: "2024",
+    images: false,
+    paragraphs: [FOUNDER_STORY[3]],
+  },
+  {
+    no: "03",
+    place: "Serengeti · Nusa Dua",
+    year: "2024–25",
+    images: false,
+    paragraphs: [FOUNDER_STORY[4], FOUNDER_STORY[5]],
+  },
+  {
+    no: "04",
+    place: "The question",
+    year: "",
+    images: false,
+    paragraphs: [FOUNDER_STORY[6], FOUNDER_STORY[7]],
+  },
+];
+
+// Vision — verbatim, as supplied.
+const VISION = [
+  "We want to create a world where beautifully engineered diffusers and the finest fragrance oils come together seamlessly — making scent an effortless, living part of every room. Our vision is to become India's defining premium scenting brand — transforming the way homes, restaurants, hotels and stores use and experience fragrance.",
+  "We hold every product to an uncompromising standard: diffusers that perform consistently, and oils with the depth and strength to fill a room and stay there.",
+  "We serve individual customers looking to elevate their home, and commercial spaces that want a signature scent their customers will remember.",
 ];
 
 export default function AboutPage() {
@@ -131,14 +163,14 @@ export default function AboutPage() {
       </section>
 
       {/* ====================================================
-          §  TWO — THE FOUNDER'S STORY (verbatim)
+          §  TWO — THE JOURNEY (founder's story as a timeline)
           ==================================================== */}
       <section className="py-[var(--spacing-section)]">
         <div className="mx-auto max-w-[var(--container-content)] px-6 md:px-10">
           <FadeUp>
             <div className="flex items-center justify-center gap-4 text-[0.62rem] uppercase tracking-[0.42em] text-[color:var(--color-charcoal-soft)]">
               <span className="h-px w-10 bg-[color:var(--color-rule)]" />
-              <span>§ Two · The Story</span>
+              <span>§ Two · The Journey</span>
               <span className="h-px w-10 bg-[color:var(--color-rule)]" />
             </div>
           </FadeUp>
@@ -158,63 +190,88 @@ export default function AboutPage() {
             </h2>
           </FadeUp>
 
-          {/* A short Udaipur gallery — the palace where it began */}
-          <FadeUp delay={0.1}>
-            <div className="mt-12 md:mt-16">
-              <div className="grid grid-cols-2 gap-3 md:grid-cols-3 md:gap-4">
-                {UDAIPUR.map((src, i) => (
-                  <div
-                    key={i}
-                    className="group relative aspect-[4/5] overflow-hidden bg-[color:var(--color-stardust)]"
-                  >
-                    <Image
-                      src={src}
-                      alt="Udaipur — a palace on the lake"
-                      fill
-                      sizes="(min-width: 768px) 30vw, 45vw"
-                      className="object-cover transition-transform duration-[1600ms] ease-[var(--ease-quint)] group-hover:scale-[1.04]"
-                    />
-                  </div>
-                ))}
-              </div>
-              <figcaption className="mt-4 text-center text-[var(--text-xs)] italic text-[color:var(--color-charcoal-soft)]">
-                Udaipur — where the question began.
-              </figcaption>
-            </div>
-          </FadeUp>
+          {/* Timeline */}
+          <div className="relative mt-14 md:mt-20">
+            {/* Connecting rail */}
+            <span
+              aria-hidden="true"
+              className="absolute left-[5px] top-3 bottom-3 w-px bg-[color:var(--color-rule)] md:left-[7px]"
+            />
 
-          {/* The story, verbatim. First letter dropcapped; rest as a single measure. */}
-          <div className="mx-auto mt-14 max-w-[62ch] space-y-6 border-t border-[color:var(--color-rule)] pt-10 text-[var(--text-base)] leading-[1.95] text-[color:var(--color-charcoal-soft)] md:mt-16">
-            {FOUNDER_STORY.map((p, i) => (
-              <FadeUp key={i} delay={0.04}>
-                <p
-                  className={
-                    i === 0
-                      ? "[&::first-letter]:float-left [&::first-letter]:mr-2 [&::first-letter]:font-[family-name:var(--font-serif)] [&::first-letter]:text-[3.2rem] [&::first-letter]:font-normal [&::first-letter]:leading-[0.9] [&::first-letter]:text-[color:var(--color-charcoal)]"
-                      : ""
-                  }
-                >
-                  {p}
-                </p>
-              </FadeUp>
-            ))}
+            <ol className="space-y-16 md:space-y-24">
+              {STOPS.map((stop) => (
+                <li key={stop.no} className="relative pl-9 md:pl-16">
+                  <FadeUp>
+                    <span
+                      aria-hidden="true"
+                      className="absolute left-0 top-1.5 h-3 w-3 rounded-full border border-[color:var(--color-aerial)] bg-[color:var(--color-white)] md:h-3.5 md:w-3.5"
+                    />
+                    <p className="text-[0.6rem] uppercase tracking-[0.32em] text-[color:var(--color-charcoal-soft)]">
+                      <span className="tabular-nums text-[color:var(--color-clay)]">
+                        {stop.no}
+                      </span>{" "}
+                      · {stop.place}
+                      {stop.year ? ` · ${stop.year}` : ""}
+                    </p>
+
+                    <div className="mt-5 space-y-5 text-[var(--text-base)] leading-[1.9] text-[color:var(--color-charcoal-soft)]">
+                      {stop.paragraphs.map((p, i) => (
+                        <p key={i} className="max-w-[60ch]">
+                          {p}
+                        </p>
+                      ))}
+                    </div>
+
+                    {stop.images && (
+                      <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 md:gap-4">
+                        {UDAIPUR.map((src, i) => (
+                          <div
+                            key={i}
+                            className="group relative aspect-[4/5] overflow-hidden bg-[color:var(--color-stardust)]"
+                          >
+                            <Image
+                              src={src}
+                              alt="Udaipur — a palace on the lake"
+                              fill
+                              sizes="(min-width: 768px) 26vw, 45vw"
+                              className="object-cover transition-transform duration-[1600ms] ease-[var(--ease-quint)] group-hover:scale-[1.04]"
+                            />
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </FadeUp>
+                </li>
+              ))}
+
+              {/* Destination — Quint Home */}
+              <li className="relative pl-9 md:pl-16">
+                <FadeUp>
+                  <span
+                    aria-hidden="true"
+                    className="absolute left-0 top-1.5 h-3 w-3 rounded-full border border-[color:var(--color-clay)] bg-[color:var(--color-clay)] md:h-3.5 md:w-3.5"
+                  />
+                  <p className="text-[0.6rem] uppercase tracking-[0.32em] text-[color:var(--color-charcoal-soft)]">
+                    <span className="text-[color:var(--color-clay)]">→</span>{" "}
+                    Quint Home · Mumbai
+                  </p>
+                  <p
+                    className="mt-5 max-w-[30ch] font-[family-name:var(--font-serif)] text-[color:var(--color-clay)]"
+                    style={{
+                      fontSize: "var(--text-2xl)",
+                      lineHeight: 1.2,
+                      letterSpacing: "-0.014em",
+                    }}
+                  >
+                    {FOUNDER_CLOSING}
+                  </p>
+                </FadeUp>
+              </li>
+            </ol>
           </div>
 
-          <FadeUp delay={0.08}>
-            <p
-              className="mx-auto mt-12 max-w-[28ch] border-t border-[color:var(--color-rule)] pt-10 text-center font-[family-name:var(--font-serif)] text-[color:var(--color-clay)] md:mt-14"
-              style={{
-                fontSize: "var(--text-2xl)",
-                lineHeight: 1.2,
-                letterSpacing: "-0.014em",
-              }}
-            >
-              {FOUNDER_CLOSING}
-            </p>
-          </FadeUp>
-
-          <FadeUp delay={0.12}>
-            <p className="mt-8 text-center text-[0.62rem] uppercase tracking-[0.32em] text-[color:var(--color-charcoal-soft)]">
+          <FadeUp delay={0.1}>
+            <p className="mt-16 text-center text-[0.62rem] uppercase tracking-[0.32em] text-[color:var(--color-charcoal-soft)]">
               Semil Rambhiya · Founder, Quint Home
             </p>
           </FadeUp>
