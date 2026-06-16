@@ -368,7 +368,7 @@ export default async function ProductPage({
                 Specifications.
               </h2>
               <p className="text-[0.62rem] uppercase tracking-[0.32em] text-[color:var(--color-charcoal-soft)]">
-                Model {product.model} · IFRA-compliant oils
+                IFRA-compliant oils
               </p>
             </div>
           </FadeUp>

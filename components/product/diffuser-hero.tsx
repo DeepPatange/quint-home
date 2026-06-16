@@ -75,7 +75,7 @@ export function DiffuserHero({ product }: { product: Diffuser }) {
           <div className="lg:pb-14">
             <FadeUp>
               <p className="text-[0.62rem] uppercase tracking-[0.42em] text-[color:var(--color-charcoal-soft)]">
-                Diffuser · Model {product.model}
+                Diffuser
               </p>
             </FadeUp>
 

@@ -16,7 +16,7 @@ export const reviews: Review[] = [
       "The first thing guests ask is what the scent is. It carries through the whole living room without ever turning heavy.",
     name: "Aarav Mehta",
     city: "Mumbai",
-    product: "Tabletop A326, Gold",
+    product: "The Monolith, Gold",
     rating: 5,
   },
   {
@@ -24,7 +24,7 @@ export const reviews: Review[] = [
       "I set a morning and an evening schedule once and forgot about it. Months later it still just runs.",
     name: "Priya Nair",
     city: "Bengaluru",
-    product: "Dual-Mist AT302",
+    product: "The Pillar",
     rating: 5,
   },
   {
@@ -32,15 +32,15 @@ export const reviews: Review[] = [
       "It looks like something I chose for the shelf, not a gadget I had to hide in a corner.",
     name: "Kabir Shah",
     city: "New Delhi",
-    product: "Clock AT370",
+    product: "The Ember",
     rating: 5,
   },
   {
     quote:
-      "Temple Dusk turned the bedroom into the room everyone drifts to at the end of the night.",
+      "Quietude turned the bedroom into the room everyone drifts to at the end of the night.",
     name: "Ananya Rao",
     city: "Pune",
-    product: "Temple Dusk, 100 ml",
+    product: "Quietude, 100 ml",
     rating: 5,
   },
   {
@@ -48,7 +48,7 @@ export const reviews: Review[] = [
       "The concentration is the whole point. My old reed sticks never reached past the hallway.",
     name: "Rohan Desai",
     city: "Hyderabad",
-    product: "Plug-In A815",
+    product: "The Pebble",
     rating: 4,
   },
   {
@@ -56,7 +56,7 @@ export const reviews: Review[] = [
       "The oils last far longer than I expected, and the refill plan means I never run out.",
     name: "Meera Krishnan",
     city: "Chennai",
-    product: "First Light, 100 ml",
+    product: "Blanc Ritual, 100 ml",
     rating: 5,
   },
 ];

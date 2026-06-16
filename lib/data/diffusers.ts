@@ -26,7 +26,7 @@ export const diffusers: Diffuser[] = [
     tier: "entry",
     tagline: "Scent Your Space. No Setup Required.",
     description:
-      "The A815 is the effortless way to fill any room with your favourite essential oil blend. Simply plug it into any wall socket, add a few drops of oil, and let the ultra-quiet mist do the rest. Its compact, rotatable plug fits virtually any outlet orientation — perfect for bathrooms, kitchens, and tight spaces where a larger diffuser just won't fit.\n\nA built-in 24-hour intelligent cyclic timer takes care of the scheduling, so you get consistent fragrance without lifting a finger. No fussing with apps, no mess, no noise.",
+      "The Pebble is the effortless way to fill any room with your favourite essential oil blend. Simply plug it into any wall socket, add a few drops of oil, and let the ultra-quiet mist do the rest. Its compact, rotatable plug fits virtually any outlet orientation — perfect for bathrooms, kitchens, and tight spaces where a larger diffuser just won't fit.\n\nA built-in 24-hour intelligent cyclic timer takes care of the scheduling, so you get consistent fragrance without lifting a finger. No fussing with apps, no mess, no noise.",
     priceINR: 12999,
     bluetooth: false,
     coverageSqFt: [161, 250],
@@ -69,7 +69,7 @@ export const diffusers: Diffuser[] = [
     tier: "premium",
     tagline: "A premium aluminum column — in brushed gold or matte black.",
     description:
-      "The A326 is where function meets design. Standing tall in premium aluminum, this column diffuser brings a refined, considered presence to any space, in brushed gold or matte black. Its large 120 ml bottle keeps fragrance flowing for hours, and the built-in 2200 mAh rechargeable battery means it goes wherever you do, no outlet required.\n\nConnect via Bluetooth to control diffusion intensity and scheduling directly from your phone. Set a schedule and let the A326 run your ambience on autopilot. A leak-proof dumping design ensures spill-free placement, always.",
+      "The Monolith is where function meets design. Standing tall in premium aluminum, this column diffuser brings a refined, considered presence to any space, in brushed gold or matte black. Its large 120 ml bottle keeps fragrance flowing for hours, and the built-in 2200 mAh rechargeable battery means it goes wherever you do, no outlet required.\n\nConnect via Bluetooth to control diffusion intensity and scheduling directly from your phone. Set a schedule and let it run your ambience on autopilot. A leak-proof dumping design ensures spill-free placement, always.",
     priceINR: 19999,
     bluetooth: true,
     coverageSqFt: [108, 1075],
@@ -141,7 +141,7 @@ export const diffusers: Diffuser[] = [
     tier: "entry",
     tagline: "Soft to the Touch. Warm in Every Sense.",
     description:
-      "The A974 reimagines the aroma diffuser with a soft fabric exterior that feels as good as it looks. Where most diffusers are cold and clinical, this one is warm and tactile — designed to sit naturally on a bedside table, salon counter, or living room shelf. The candle-like ambient glow adds a gentle flicker of warmth to evening routines.\n\nPair via Bluetooth for app-based control when you want it, or simply reach for the satisfying knob to dial in intensity the old-fashioned way. Intuitive by design, it fits any space and any lifestyle.",
+      "The Loom reimagines the aroma diffuser with a soft fabric exterior that feels as good as it looks. Where most diffusers are cold and clinical, this one is warm and tactile — designed to sit naturally on a bedside table, salon counter, or living room shelf. The candle-like ambient glow adds a gentle flicker of warmth to evening routines.\n\nPair via Bluetooth for app-based control when you want it, or simply reach for the satisfying knob to dial in intensity the old-fashioned way. Intuitive by design, it fits any space and any lifestyle.",
     priceINR: 15999,
     bluetooth: true,
     coverageSqFt: [108, 590],
@@ -185,7 +185,7 @@ export const diffusers: Diffuser[] = [
     tier: "premium",
     tagline: "Two Scents. One Space. Infinite Combinations.",
     description:
-      "The A-T302 does something no ordinary diffuser can: run two completely independent essential oil blends at once. Each of its dual 60 ml bottles operates separately, so you can diffuse two scents individually or layer them for a custom blend. Near-silent operation at ≤35 dB makes it whisper-quiet enough for a study, bedroom, or yoga session.\n\nBluetooth connectivity gives you full control from your phone — adjust each mist outlet independently without leaving your seat. Built from premium aluminum alloy and powered via USB.",
+      "The Pillar does something no ordinary diffuser can: run two completely independent essential oil blends at once. Each of its dual 60 ml bottles operates separately, so you can diffuse two scents individually or layer them for a custom blend. Near-silent operation at ≤35 dB makes it whisper-quiet enough for a study, bedroom, or yoga session.\n\nBluetooth connectivity gives you full control from your phone — adjust each mist outlet independently without leaving your seat. Built from premium aluminum alloy and powered via USB.",
     priceINR: 22999,
     bluetooth: true,
     coverageSqFt: [108, 538],
@@ -230,7 +230,7 @@ export const diffusers: Diffuser[] = [
     tier: "premium",
     tagline: "Always Know the Time. Always Set the Mood.",
     description:
-      "The A-T370 is more than a diffuser — it is a desktop companion. An integrated LED clock with automatic network time synchronisation keeps you grounded in your day, while a soft natural breathing light and steady fragrance mist keep your space feeling calm. The glass-like acrylic finish gives it a premium, almost sculptural quality.\n\nBluetooth connectivity means you can adjust fragrance intensity from your phone without disturbing the calm the A-T370 creates. Right at home on a work desk, bar cart, or bedside table.",
+      "The Ember is more than a diffuser — it is a desktop companion. An integrated LED clock with automatic network time synchronisation keeps you grounded in your day, while a soft natural breathing light and steady fragrance mist keep your space feeling calm. The glass-like acrylic finish gives it a premium, almost sculptural quality.\n\nBluetooth connectivity means you can adjust fragrance intensity from your phone without disturbing the calm it creates. Right at home on a work desk, bar cart, or bedside table.",
     priceINR: 18999,
     bluetooth: true,
     coverageSqFt: [108, 538],
