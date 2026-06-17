@@ -1,11 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { oils } from "@/lib/data/oils";
 import { formatINR } from "@/lib/utils";
-import { FadeUp } from "@/components/motion/fade-up";
 import { SectionHeader } from "@/components/ui/section-header";
 
 /**
@@ -70,6 +69,13 @@ export function ScentFinder() {
     setAccord(null);
   };
 
+  const trackRef = useRef<HTMLDivElement>(null);
+  const scrollByTile = (dir: number) => {
+    const el = trackRef.current;
+    if (!el) return;
+    el.scrollBy({ left: dir * el.clientWidth * 0.7, behavior: "smooth" });
+  };
+
   return (
     <section className="bg-[color:var(--color-ivory)] py-[var(--spacing-section)]">
       <div className="mx-auto max-w-[var(--container-full)] px-6 md:px-10">
@@ -108,21 +114,25 @@ export function ScentFinder() {
           </span>
         </div>
 
-        {/* Step 1 — mood as image tiles */}
+        {/* Step 1 — mood as a small horizontal carousel */}
         {step === 1 && (
-          <div className="mt-8 grid max-w-3xl grid-cols-2 gap-3 sm:grid-cols-4 md:gap-4">
-            {MOODS.map((m, i) => (
-              <FadeUp key={m.key} delay={i * 0.06}>
+          <div className="relative mt-8">
+            <div
+              ref={trackRef}
+              className="flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+            >
+              {MOODS.map((m) => (
                 <button
+                  key={m.key}
                   type="button"
                   onClick={() => setMood(m.key)}
-                  className="group relative block aspect-square w-full overflow-hidden text-left outline-none"
+                  className="group relative block aspect-[4/5] w-[8.5rem] shrink-0 snap-start overflow-hidden text-left outline-none sm:w-[10rem]"
                 >
                   <Image
                     src={m.image}
                     alt={m.label}
                     fill
-                    sizes="(min-width: 768px) 22vw, 45vw"
+                    sizes="10rem"
                     className="object-cover transition-transform duration-[1400ms] ease-[var(--ease-quint)] group-hover:scale-[1.06]"
                   />
                   <div
@@ -133,12 +143,12 @@ export function ScentFinder() {
                         "linear-gradient(180deg, rgba(58,53,50,0) 38%, rgba(58,53,50,0.78) 100%)",
                     }}
                   />
-                  <div className="absolute inset-x-0 bottom-0 p-3 text-[color:var(--color-stardust)] md:p-4">
+                  <div className="absolute inset-x-0 bottom-0 p-3 text-[color:var(--color-stardust)]">
                     <span
                       className="block"
                       style={{
                         fontFamily: "var(--font-serif)",
-                        fontSize: "1.05rem",
+                        fontSize: "0.98rem",
                         lineHeight: 1.05,
                         letterSpacing: "-0.012em",
                         fontWeight: 400,
@@ -146,13 +156,35 @@ export function ScentFinder() {
                     >
                       {m.label}
                     </span>
-                    <span className="mt-1 block text-[0.54rem] uppercase tracking-[0.24em] opacity-85">
+                    <span className="mt-1 block text-[0.5rem] uppercase tracking-[0.22em] opacity-85">
                       {m.sub}
                     </span>
                   </div>
                 </button>
-              </FadeUp>
-            ))}
+              ))}
+            </div>
+
+            {/* Arrows */}
+            <button
+              type="button"
+              onClick={() => scrollByTile(-1)}
+              aria-label="Previous moods"
+              className="absolute -left-3 top-1/2 z-10 hidden -translate-y-1/2 rounded-full border border-[color:var(--color-rule)] bg-[color:var(--color-white)] p-2 text-[color:var(--color-charcoal)] transition-colors duration-300 hover:text-[color:var(--color-clay)] sm:block"
+            >
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4">
+                <path d="m15 18-6-6 6-6" />
+              </svg>
+            </button>
+            <button
+              type="button"
+              onClick={() => scrollByTile(1)}
+              aria-label="More moods"
+              className="absolute -right-3 top-1/2 z-10 hidden -translate-y-1/2 rounded-full border border-[color:var(--color-rule)] bg-[color:var(--color-white)] p-2 text-[color:var(--color-charcoal)] transition-colors duration-300 hover:text-[color:var(--color-clay)] sm:block"
+            >
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4">
+                <path d="m9 18 6-6-6-6" />
+              </svg>
+            </button>
           </div>
         )}
 
