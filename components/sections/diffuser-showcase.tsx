@@ -5,7 +5,7 @@ import { formatINR } from "@/lib/utils";
 import { FadeUp } from "@/components/motion/fade-up";
 
 /**
- * Diffuser Showcase — features the 3 diffuser variants in editorial cards.
+ * Diffuser Showcase — features the full diffuser range in editorial cards.
  * Replaces the old generic "Diffusers vs Oils" CategoryDuo with something that
  * actually tells the buyer what they are choosing between.
  */
@@ -30,15 +30,15 @@ export function DiffuserShowcase() {
                   fontWeight: 400,
                 }}
               >
-                Three objects.{" "}
+                Five objects.{" "}
                 <em className="text-[color:var(--color-aerial-deep)]">
                   One for every room.
                 </em>
               </h2>
             </div>
             <p className="max-w-[32ch] text-[0.92rem] leading-[1.65] text-[color:var(--color-charcoal-soft)] md:text-right">
-              Brass, smoked glass, or cast ceramic — each sized for a different
-              room and finished by hand in Mumbai.
+              Aluminium, soft fabric, and acrylic — each model sized for a
+              different room, from a compact plug-in to an open-plan column.
             </p>
           </div>
         </FadeUp>
@@ -65,9 +65,7 @@ export function DiffuserShowcase() {
                     </span>
                   </div>
                   <div className="absolute inset-x-0 bottom-0 flex items-end justify-between p-5 text-[0.6rem] uppercase tracking-[0.32em] text-[color:var(--color-stardust)] md:p-6">
-                    <span>
-                      {d.coverageSqFt[0]}–{d.coverageSqFt[1]} sq ft
-                    </span>
+                    <span>{d.coverageLabel}</span>
                     <span className="transition-transform duration-500 group-hover:-translate-y-0.5">
                       Explore →
                     </span>
