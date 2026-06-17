@@ -66,7 +66,7 @@ export default function BusinessesPage() {
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(180deg, rgba(41,51,41,0.30) 0%, rgba(41,51,41,0.05) 40%, rgba(41,51,41,0.78) 100%)",
+              "linear-gradient(180deg, rgba(28,35,28,0.55) 0%, rgba(28,35,28,0.30) 40%, rgba(28,35,28,0.92) 100%)",
           }}
         />
         <div className="relative z-10 mx-auto w-full max-w-[var(--container-full)] px-6 pb-14 md:px-10 md:pb-20">
@@ -155,7 +155,7 @@ export default function BusinessesPage() {
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(90deg, rgba(41,51,41,0.72) 0%, rgba(41,51,41,0.25) 60%, rgba(41,51,41,0.10) 100%)",
+              "linear-gradient(90deg, rgba(28,35,28,0.92) 0%, rgba(28,35,28,0.62) 50%, rgba(28,35,28,0.22) 100%)",
           }}
         />
         <div className="relative z-10 mx-auto w-full max-w-[var(--container-full)] px-6 md:px-10">
