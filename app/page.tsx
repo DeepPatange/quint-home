@@ -1,6 +1,7 @@
 import { Hero } from "@/components/sections/hero";
 import { DiffuserShowcase } from "@/components/sections/diffuser-showcase";
 import { ScentLibrary } from "@/components/sections/scent-library";
+import { HowToUse } from "@/components/sections/how-to-use";
 import { Atmosphere } from "@/components/sections/atmosphere";
 import { SmartHome } from "@/components/sections/smart-home";
 import { FounderTeaser } from "@/components/sections/founder-teaser";
@@ -20,6 +21,7 @@ export default function Home() {
       <SmartHome />
       <DiffuserShowcase />
       <ScentLibrary />
+      <HowToUse />
       <MonogramDivider className="py-[var(--spacing-section-sm)]" />
       <FounderTeaser />
       <Atmosphere />
