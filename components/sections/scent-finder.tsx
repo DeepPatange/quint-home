@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { oils } from "@/lib/data/oils";
@@ -8,10 +8,10 @@ import { formatINR } from "@/lib/utils";
 import { SectionHeader } from "@/components/ui/section-header";
 
 /**
- * Scent Finder — a two-question quiz that recommends one of the eight
- * signatures. Step one picks a mood from four atmospheric image tiles;
- * step two picks an accord. Deterministic: each oil carries a (mood, accord)
- * profile and the closest match wins.
+ * Scent Finder — a polished two-panel quiz. The left panel is a large visual
+ * that updates live as you hover/choose a mood, then resolves to the matched
+ * oil. The right panel carries the two questions and the result. Deterministic:
+ * each oil has a (mood, accord) profile and the closest match wins.
  */
 
 type Mood = "calm" | "fresh" | "warm" | "grounded";
@@ -24,11 +24,11 @@ const MOODS: { key: Mood; label: string; sub: string; image: string }[] = [
   { key: "grounded", label: "Grounded & deep", sub: "Mineral, woody", image: "/images/scent-finder/grounded.webp" },
 ];
 
-const ACCORDS: { key: Accord; label: string }[] = [
-  { key: "citrus", label: "Citrus & white florals" },
-  { key: "green", label: "Green & mineral" },
-  { key: "amber", label: "Vanilla & amber" },
-  { key: "salt", label: "Salt & leather" },
+const ACCORDS: { key: Accord; label: string; sub: string }[] = [
+  { key: "citrus", label: "Citrus & white florals", sub: "Bright, luminous, clean" },
+  { key: "green", label: "Green & mineral", sub: "Vetiver, flint, cedar" },
+  { key: "amber", label: "Vanilla & amber", sub: "Soft, sweet, enveloping" },
+  { key: "salt", label: "Salt & leather", sub: "Coastal air, warm hide" },
 ];
 
 const PROFILE: Record<string, { mood: Mood; accord: Accord }> = {
@@ -60,6 +60,7 @@ function recommend(mood: Mood, accord: Accord) {
 export function ScentFinder() {
   const [mood, setMood] = useState<Mood | null>(null);
   const [accord, setAccord] = useState<Accord | null>(null);
+  const [hovered, setHovered] = useState<Mood | null>(null);
 
   const step = mood == null ? 1 : accord == null ? 2 : 3;
   const result = mood && accord ? recommend(mood, accord) : null;
@@ -67,14 +68,12 @@ export function ScentFinder() {
   const reset = () => {
     setMood(null);
     setAccord(null);
+    setHovered(null);
   };
 
-  const trackRef = useRef<HTMLDivElement>(null);
-  const scrollByTile = (dir: number) => {
-    const el = trackRef.current;
-    if (!el) return;
-    el.scrollBy({ left: dir * el.clientWidth * 0.7, behavior: "smooth" });
-  };
+  // Which mood image leads the visual panel during steps 1–2.
+  const visibleMood: Mood = hovered ?? mood ?? MOODS[0].key;
+  const visibleMoodLabel = MOODS.find((m) => m.key === visibleMood)?.label ?? "";
 
   return (
     <section className="bg-[color:var(--color-ivory)] py-[var(--spacing-section)]">
@@ -100,179 +99,254 @@ export function ScentFinder() {
           }
         />
 
-        {/* Step indicator */}
-        <div className="mt-12 flex items-center justify-between border-b border-[color:var(--color-rule)] pb-4">
-          <p className="text-[0.95rem] text-[color:var(--color-charcoal-soft)]">
-            {step === 1
-              ? "What should the room feel like?"
-              : step === 2
-                ? "And the detail you love most?"
-                : "Your match"}
-          </p>
-          <span className="text-[0.6rem] uppercase tracking-[0.32em] text-[color:var(--color-charcoal-soft)]">
-            {step < 3 ? `Step ${step} of 2` : "Done"}
-          </span>
-        </div>
-
-        {/* Step 1 — mood as a small horizontal carousel */}
-        {step === 1 && (
-          <div className="relative mt-8">
-            <div
-              ref={trackRef}
-              className="flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-            >
-              {MOODS.map((m) => (
-                <button
-                  key={m.key}
-                  type="button"
-                  onClick={() => setMood(m.key)}
-                  className="group relative block aspect-[4/5] w-[8.5rem] shrink-0 snap-start overflow-hidden text-left outline-none sm:w-[10rem]"
-                >
-                  <Image
-                    src={m.image}
-                    alt={m.label}
-                    fill
-                    sizes="10rem"
-                    className="object-cover transition-transform duration-[1400ms] ease-[var(--ease-quint)] group-hover:scale-[1.06]"
-                  />
-                  <div
-                    aria-hidden="true"
-                    className="absolute inset-0 transition-opacity duration-500 group-hover:opacity-90"
-                    style={{
-                      background:
-                        "linear-gradient(180deg, rgba(58,53,50,0) 38%, rgba(58,53,50,0.78) 100%)",
-                    }}
-                  />
-                  <div className="absolute inset-x-0 bottom-0 p-3 text-[color:var(--color-stardust)]">
-                    <span
-                      className="block"
-                      style={{
-                        fontFamily: "var(--font-serif)",
-                        fontSize: "0.98rem",
-                        lineHeight: 1.05,
-                        letterSpacing: "-0.012em",
-                        fontWeight: 400,
-                      }}
-                    >
-                      {m.label}
-                    </span>
-                    <span className="mt-1 block text-[0.5rem] uppercase tracking-[0.22em] opacity-85">
-                      {m.sub}
-                    </span>
-                  </div>
-                </button>
-              ))}
-            </div>
-
-            {/* Arrows */}
-            <button
-              type="button"
-              onClick={() => scrollByTile(-1)}
-              aria-label="Previous moods"
-              className="absolute -left-3 top-1/2 z-10 hidden -translate-y-1/2 rounded-full border border-[color:var(--color-rule)] bg-[color:var(--color-white)] p-2 text-[color:var(--color-charcoal)] transition-colors duration-300 hover:text-[color:var(--color-clay)] sm:block"
-            >
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4">
-                <path d="m15 18-6-6 6-6" />
-              </svg>
-            </button>
-            <button
-              type="button"
-              onClick={() => scrollByTile(1)}
-              aria-label="More moods"
-              className="absolute -right-3 top-1/2 z-10 hidden -translate-y-1/2 rounded-full border border-[color:var(--color-rule)] bg-[color:var(--color-white)] p-2 text-[color:var(--color-charcoal)] transition-colors duration-300 hover:text-[color:var(--color-clay)] sm:block"
-            >
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4">
-                <path d="m9 18 6-6-6-6" />
-              </svg>
-            </button>
-          </div>
-        )}
-
-        {/* Step 2 — accord chips */}
-        {step === 2 && (
-          <div className="mt-8">
-            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-              {ACCORDS.map((a) => (
-                <button
-                  key={a.key}
-                  type="button"
-                  onClick={() => setAccord(a.key)}
-                  className="group flex items-center justify-between border border-[color:var(--color-rule)] bg-[color:var(--color-white)] px-6 py-5 text-left transition-colors duration-300 hover:border-[color:var(--color-charcoal)] outline-none"
-                >
-                  <span className="text-[1.05rem] text-[color:var(--color-charcoal)] transition-colors group-hover:text-[color:var(--color-clay)]">
-                    {a.label}
-                  </span>
-                  <span className="text-[color:var(--color-charcoal-soft)] transition-transform duration-300 group-hover:translate-x-1">
-                    →
-                  </span>
-                </button>
-              ))}
-            </div>
-            <button
-              type="button"
-              onClick={() => setMood(null)}
-              className="mt-6 text-[0.72rem] uppercase tracking-[0.28em] text-[color:var(--color-charcoal-soft)] underline-offset-4 hover:text-[color:var(--color-charcoal)] hover:underline"
-            >
-              ← Back
-            </button>
-          </div>
-        )}
-
-        {/* Step 3 — result */}
-        {step === 3 && result && (
-          <div className="mt-10 grid gap-8 md:grid-cols-[minmax(0,16rem)_1fr] md:items-center">
-            <Link
-              href={`/shop/${result.slug}`}
-              className="group relative block aspect-[4/5] overflow-hidden bg-[color:var(--color-stardust-soft)]"
-            >
+        {/* Two-panel finder card */}
+        <div className="mt-12 grid overflow-hidden border border-[color:var(--color-rule)] bg-[color:var(--color-white)] shadow-[0_30px_80px_-50px_rgba(58,53,50,0.45)] md:grid-cols-2">
+          {/* ===== Visual panel ===== */}
+          <div className="relative h-72 md:h-auto md:min-h-[34rem]">
+            {/* Mood images, cross-fading (steps 1–2) */}
+            {MOODS.map((m) => (
+              <Image
+                key={m.key}
+                src={m.image}
+                alt={m.label}
+                fill
+                sizes="(min-width: 768px) 45vw, 100vw"
+                className={`object-cover transition-opacity duration-[900ms] ease-[var(--ease-quint)] ${
+                  step < 3 && m.key === visibleMood ? "opacity-100" : "opacity-0"
+                }`}
+              />
+            ))}
+            {/* Result oil image (step 3) */}
+            {step === 3 && result && (
               <Image
                 src={result.image}
                 alt={result.name}
                 fill
-                sizes="(min-width: 768px) 16rem, 70vw"
-                className="object-cover transition-transform duration-[1400ms] ease-[var(--ease-quint)] group-hover:scale-[1.04]"
+                sizes="(min-width: 768px) 45vw, 100vw"
+                className="object-cover"
               />
-            </Link>
-            <div>
-              <p className="text-[0.6rem] uppercase tracking-[0.42em] text-[color:var(--color-charcoal-soft)]">
-                We&rsquo;d reach for
-              </p>
-              <h3
-                className="mt-4"
+            )}
+
+            <div
+              aria-hidden="true"
+              className="absolute inset-0"
+              style={{
+                background:
+                  "linear-gradient(180deg, rgba(58,53,50,0.10) 0%, rgba(58,53,50,0) 30%, rgba(58,53,50,0.55) 100%)",
+              }}
+            />
+
+            {/* Caption on the visual */}
+            <div className="absolute inset-x-0 bottom-0 flex items-end justify-between p-6 text-[color:var(--color-stardust)] md:p-8">
+              <span className="text-[0.6rem] uppercase tracking-[0.36em] opacity-85">
+                {step === 3 ? "Your match" : "The mood"}
+              </span>
+              <span
                 style={{
                   fontFamily: "var(--font-serif)",
-                  fontSize: "var(--text-4xl)",
-                  lineHeight: 1.0,
-                  letterSpacing: "-0.022em",
-                  fontWeight: 400,
+                  fontSize: "var(--text-2xl)",
+                  lineHeight: 1,
+                  letterSpacing: "-0.018em",
                 }}
               >
-                {result.name}
-              </h3>
-              <p className="mt-5 max-w-[46ch] text-[var(--text-base)] leading-[1.7] text-[color:var(--color-charcoal-soft)]">
-                {result.tagline}
-              </p>
-              <div className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-3">
-                <Link
-                  href={`/shop/${result.slug}`}
-                  className="group inline-flex items-center gap-3 border-b border-[color:var(--color-charcoal)] pb-1.5 text-[0.72rem] uppercase tracking-[0.28em] transition-colors duration-300 hover:border-[color:var(--color-clay)] hover:text-[color:var(--color-clay)]"
-                >
-                  View {result.name} · {formatINR(result.priceINR)}
-                  <span className="transition-transform duration-300 group-hover:translate-x-1">
-                    →
-                  </span>
-                </Link>
-                <button
-                  type="button"
-                  onClick={reset}
-                  className="text-[0.72rem] uppercase tracking-[0.28em] text-[color:var(--color-charcoal-soft)] underline-offset-4 hover:text-[color:var(--color-charcoal)] hover:underline"
-                >
-                  Start over
-                </button>
-              </div>
+                {step === 3 && result ? result.name : visibleMoodLabel}
+              </span>
             </div>
           </div>
-        )}
+
+          {/* ===== Interaction panel ===== */}
+          <div className="flex flex-col justify-center p-8 md:p-12 lg:p-14">
+            {/* Progress */}
+            <div className="mb-8 flex items-center gap-3">
+              {[1, 2].map((s) => (
+                <span
+                  key={s}
+                  className="h-[3px] w-10 rounded-full transition-colors duration-500"
+                  style={{
+                    backgroundColor:
+                      (step === 3 ? 2 : step) >= s
+                        ? "var(--color-clay)"
+                        : "var(--color-rule)",
+                  }}
+                />
+              ))}
+              <span className="ml-2 text-[0.6rem] uppercase tracking-[0.32em] text-[color:var(--color-charcoal-soft)]">
+                {step < 3 ? `Step ${step} of 2` : "Result"}
+              </span>
+            </div>
+
+            {/* Step 1 — mood */}
+            {step === 1 && (
+              <div>
+                <h3
+                  className="max-w-[20ch]"
+                  style={{
+                    fontFamily: "var(--font-serif)",
+                    fontSize: "var(--text-2xl)",
+                    lineHeight: 1.1,
+                    letterSpacing: "-0.016em",
+                    fontWeight: 400,
+                  }}
+                >
+                  What should the room feel like?
+                </h3>
+                <div className="mt-7">
+                  {MOODS.map((m) => (
+                    <button
+                      key={m.key}
+                      type="button"
+                      onMouseEnter={() => setHovered(m.key)}
+                      onMouseLeave={() => setHovered(null)}
+                      onFocus={() => setHovered(m.key)}
+                      onClick={() => setMood(m.key)}
+                      className="group flex w-full items-center justify-between gap-4 border-t border-[color:var(--color-rule)] py-4 text-left outline-none last:border-b"
+                    >
+                      <span>
+                        <span
+                          className="block transition-colors duration-300 group-hover:text-[color:var(--color-clay)]"
+                          style={{
+                            fontFamily: "var(--font-serif)",
+                            fontSize: "var(--text-xl)",
+                            lineHeight: 1.1,
+                            letterSpacing: "-0.012em",
+                            fontWeight: 400,
+                          }}
+                        >
+                          {m.label}
+                        </span>
+                        <span className="mt-1 block text-[0.74rem] text-[color:var(--color-charcoal-soft)]">
+                          {m.sub}
+                        </span>
+                      </span>
+                      <span className="text-[color:var(--color-charcoal-soft)] transition-transform duration-300 group-hover:translate-x-1 group-hover:text-[color:var(--color-clay)]">
+                        →
+                      </span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Step 2 — accord */}
+            {step === 2 && (
+              <div>
+                <h3
+                  className="max-w-[20ch]"
+                  style={{
+                    fontFamily: "var(--font-serif)",
+                    fontSize: "var(--text-2xl)",
+                    lineHeight: 1.1,
+                    letterSpacing: "-0.016em",
+                    fontWeight: 400,
+                  }}
+                >
+                  And the detail you love most?
+                </h3>
+                <div className="mt-7">
+                  {ACCORDS.map((a) => (
+                    <button
+                      key={a.key}
+                      type="button"
+                      onClick={() => setAccord(a.key)}
+                      className="group flex w-full items-center justify-between gap-4 border-t border-[color:var(--color-rule)] py-4 text-left outline-none last:border-b"
+                    >
+                      <span>
+                        <span
+                          className="block transition-colors duration-300 group-hover:text-[color:var(--color-clay)]"
+                          style={{
+                            fontFamily: "var(--font-serif)",
+                            fontSize: "var(--text-xl)",
+                            lineHeight: 1.1,
+                            letterSpacing: "-0.012em",
+                            fontWeight: 400,
+                          }}
+                        >
+                          {a.label}
+                        </span>
+                        <span className="mt-1 block text-[0.74rem] text-[color:var(--color-charcoal-soft)]">
+                          {a.sub}
+                        </span>
+                      </span>
+                      <span className="text-[color:var(--color-charcoal-soft)] transition-transform duration-300 group-hover:translate-x-1 group-hover:text-[color:var(--color-clay)]">
+                        →
+                      </span>
+                    </button>
+                  ))}
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setMood(null)}
+                  className="mt-7 text-[0.72rem] uppercase tracking-[0.28em] text-[color:var(--color-charcoal-soft)] underline-offset-4 hover:text-[color:var(--color-charcoal)] hover:underline"
+                >
+                  ← Back
+                </button>
+              </div>
+            )}
+
+            {/* Step 3 — result */}
+            {step === 3 && result && (
+              <div>
+                <p className="text-[0.6rem] uppercase tracking-[0.42em] text-[color:var(--color-charcoal-soft)]">
+                  We&rsquo;d reach for
+                </p>
+                <h3
+                  className="mt-4"
+                  style={{
+                    fontFamily: "var(--font-serif)",
+                    fontSize: "var(--text-4xl)",
+                    lineHeight: 1.0,
+                    letterSpacing: "-0.022em",
+                    fontWeight: 400,
+                  }}
+                >
+                  {result.name}
+                </h3>
+                <p className="mt-5 max-w-[42ch] text-[var(--text-base)] leading-[1.7] text-[color:var(--color-charcoal-soft)]">
+                  {result.tagline}
+                </p>
+
+                {/* Note pyramid */}
+                <dl className="mt-7 grid gap-1.5 border-t border-[color:var(--color-rule)] pt-6 text-[0.84rem] leading-[1.45]">
+                  {(
+                    [
+                      ["Top", result.notes.top],
+                      ["Heart", result.notes.heart],
+                      ["Base", result.notes.base],
+                    ] as const
+                  ).map(([label, arr]) => (
+                    <div key={label} className="grid grid-cols-[3.5rem_1fr] gap-3">
+                      <dt className="pt-px text-[0.54rem] uppercase tracking-[0.24em] text-[color:var(--color-charcoal-soft)]">
+                        {label}
+                      </dt>
+                      <dd className="text-[color:var(--color-charcoal)]">
+                        {arr.join(", ")}
+                      </dd>
+                    </div>
+                  ))}
+                </dl>
+
+                <div className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-3">
+                  <Link
+                    href={`/shop/${result.slug}`}
+                    className="group inline-flex items-center gap-3 border-b border-[color:var(--color-charcoal)] pb-1.5 text-[0.72rem] uppercase tracking-[0.28em] transition-colors duration-300 hover:border-[color:var(--color-clay)] hover:text-[color:var(--color-clay)]"
+                  >
+                    View {result.name} · {formatINR(result.priceINR)}
+                    <span className="transition-transform duration-300 group-hover:translate-x-1">
+                      →
+                    </span>
+                  </Link>
+                  <button
+                    type="button"
+                    onClick={reset}
+                    className="text-[0.72rem] uppercase tracking-[0.28em] text-[color:var(--color-charcoal-soft)] underline-offset-4 hover:text-[color:var(--color-charcoal)] hover:underline"
+                  >
+                    Start over
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
       </div>
     </section>
   );
