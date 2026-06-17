@@ -25,6 +25,9 @@ export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [slideHidden, setSlideHidden] = useState(false);
   const lastY = useRef(0);
+  // Accumulates scroll distance in the current direction. Lets the reveal work
+  // even with smooth-scroll (Lenis) sub-pixel per-frame deltas.
+  const accum = useRef(0);
   const headerRef = useRef<HTMLElement>(null);
 
   // On the homepage the header stays transparent and merged into the banner for
@@ -47,16 +50,28 @@ export function Header() {
       }
       setPastHero(past);
 
-      // The header is never pinned: it leaves the moment you scroll down
-      // (over the hero and everywhere) so the descent feels header-less, and
-      // slides back the instant you scroll up. Shown only at the very top.
+      // The header is never pinned: it leaves on scroll-down and slides back on
+      // scroll-up. We accumulate small deltas (and reset on direction change) so
+      // smooth-scroll's tiny per-frame steps still trigger a reliable reveal.
       const delta = y - lastY.current;
-      if (y <= 4 || delta < -4) {
-        setHidden(false);
-      } else if (delta > 4) {
-        setHidden(true);
-      }
       lastY.current = y;
+
+      if (y <= 8) {
+        setHidden(false);
+        accum.current = 0;
+      } else if (delta !== 0) {
+        // Reset the tally whenever the scroll direction flips.
+        if (delta > 0 !== accum.current > 0) accum.current = 0;
+        accum.current += delta;
+
+        if (accum.current > 10) {
+          setHidden(true); // scrolled down ~10px
+          accum.current = 0;
+        } else if (accum.current < -10) {
+          setHidden(false); // scrolled up ~10px
+          accum.current = 0;
+        }
+      }
     }
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -110,7 +125,7 @@ export function Header() {
           // Reveal (coming back down) eases in slowly; hiding is quicker.
           // Background + text colour cross-fade as the panel appears.
           transition: `transform ${
-            hidden ? "450ms" : "900ms"
+            hidden ? "400ms" : "550ms"
           } var(--ease-quint), background-color 500ms var(--ease-quint), backdrop-filter 500ms var(--ease-quint), color 500ms var(--ease-quint)`,
         }}
       >
