@@ -53,7 +53,7 @@ export function PairBundle({
   if (options.length === 0) return null;
 
   return (
-    <div className="w-full overflow-hidden border border-[color:var(--color-rule)]">
+    <div className="w-[100%] overflow-hidden border border-[color:var(--color-rule)]">
       {/* Toggle row */}
       <label className="flex cursor-pointer items-start gap-4 p-5">
         <input
@@ -102,7 +102,7 @@ export function PairBundle({
                   id="pair-select"
                   value={slug}
                   onChange={(e) => setSlug(e.target.value)}
-                  className="w-full min-w-0 cursor-pointer appearance-none truncate border-b border-[color:var(--color-charcoal)] bg-transparent py-1.5 pr-7 font-[family-name:var(--font-serif)] text-[0.98rem] text-[color:var(--color-charcoal)] outline-none transition-colors duration-300 focus:border-[color:var(--color-clay)]"
+                  className="w-[100%] min-w-0 cursor-pointer appearance-none truncate border-b border-[color:var(--color-charcoal)] bg-transparent py-1.5 pr-7 font-[family-name:var(--font-serif)] text-[0.98rem] text-[color:var(--color-charcoal)] outline-none transition-colors duration-300 focus:border-[color:var(--color-clay)]"
                 >
                   {options.map((o) => (
                     <option key={o.slug} value={o.slug}>
@@ -147,7 +147,7 @@ export function PairBundle({
               a button and never looks stretched. */}
           <button
             type="button"
-            className="group mt-4 flex h-12 w-full items-center justify-center gap-2.5 border border-[color:var(--color-charcoal)] px-6 text-[0.68rem] uppercase tracking-[0.26em] text-[color:var(--color-charcoal)] transition-colors duration-500 hover:bg-[color:var(--color-charcoal)] hover:text-[color:var(--color-ivory)]"
+            className="group mt-4 flex h-12 w-[100%] items-center justify-center gap-2.5 border border-[color:var(--color-charcoal)] px-6 text-[0.68rem] uppercase tracking-[0.26em] text-[color:var(--color-charcoal)] transition-colors duration-500 hover:bg-[color:var(--color-charcoal)] hover:text-[color:var(--color-ivory)]"
           >
             <span>Add bundle to bag</span>
             <span className="transition-transform duration-500 group-hover:translate-x-1">

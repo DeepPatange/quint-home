@@ -12,10 +12,9 @@ import type { Diffuser } from "@/lib/types";
 /**
  * Diffuser PDP — images on the left (sticky), and a single right column that
  * carries the buy box, then the overview, key features and technical
- * specifications. Specs are sourced from the Quint Home website brief's
- * "Electronic Diffusers — Product Value Proposition", not the old catalogue
- * sheet. A colour selector swaps the gallery + finish in place for multi-finish
- * models (e.g. the A326 in gold / black).
+ * specifications (the per-model catalogue spec sheet). A colour selector swaps
+ * the gallery + finish in place for multi-finish models (e.g. the A326 in
+ * gold / black).
  */
 export function DiffuserHero({ product }: { product: Diffuser }) {
   const colors = product.colors;
@@ -142,7 +141,7 @@ export function DiffuserHero({ product }: { product: Diffuser }) {
                   id="starting-oil"
                   value={oilSlug}
                   onChange={(e) => setOilSlug(e.target.value)}
-                  className="w-full min-w-0 cursor-pointer appearance-none truncate border-b border-[color:var(--color-charcoal)] bg-transparent py-2.5 pr-8 font-[family-name:var(--font-serif)] text-[1.05rem] text-[color:var(--color-charcoal)] outline-none transition-colors duration-300 focus:border-[color:var(--color-clay)]"
+                  className="w-[100%] min-w-0 cursor-pointer appearance-none truncate border-b border-[color:var(--color-charcoal)] bg-transparent py-2.5 pr-8 font-[family-name:var(--font-serif)] text-[1.05rem] text-[color:var(--color-charcoal)] outline-none transition-colors duration-300 focus:border-[color:var(--color-clay)]"
                 >
                   {oils.map((o) => (
                     <option key={o.slug} value={o.slug}>

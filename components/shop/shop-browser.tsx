@@ -187,7 +187,7 @@ export function ShopBrowser() {
                         setCategory(c.key);
                         setOpen(false);
                       }}
-                      className={`flex w-full items-center justify-between gap-4 px-5 py-3.5 text-left text-[0.72rem] uppercase tracking-[0.24em] transition-colors duration-200 ${
+                      className={`flex w-[100%] items-center justify-between gap-4 px-5 py-3.5 text-left text-[0.72rem] uppercase tracking-[0.24em] transition-colors duration-200 ${
                         active
                           ? "bg-[color:var(--color-stardust-soft)] text-[color:var(--color-charcoal)]"
                           : "text-[color:var(--color-charcoal-soft)] hover:bg-[color:var(--color-stardust-soft)] hover:text-[color:var(--color-clay)]"
@@ -207,7 +207,7 @@ export function ShopBrowser() {
           </div>
 
           {/* Search field */}
-          <div className="relative flex w-full items-center gap-3 border-b border-[color:var(--color-rule)] pb-2 lg:w-[22rem]">
+          <div className="relative flex w-[100%] items-center gap-3 border-b border-[color:var(--color-rule)] pb-2 lg:w-[22rem]">
             <Search
               className="h-[18px] w-[18px] shrink-0 text-[color:var(--color-charcoal-soft)]"
               aria-hidden="true"
@@ -218,7 +218,7 @@ export function ShopBrowser() {
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Search by name, note or room…"
               aria-label="Search products"
-              className="w-full bg-transparent text-[0.92rem] text-[color:var(--color-charcoal)] placeholder:text-[color:var(--color-charcoal-soft)]/70 focus:outline-none"
+              className="w-[100%] bg-transparent text-[0.92rem] text-[color:var(--color-charcoal)] placeholder:text-[color:var(--color-charcoal-soft)]/70 focus:outline-none"
             />
             {query && (
               <button
