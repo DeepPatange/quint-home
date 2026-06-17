@@ -111,7 +111,6 @@ export const diffusers: Diffuser[] = [
       "/images/diffusers/a326-gold/02.webp",
       "/images/diffusers/a326-gold/03.webp",
       "/images/diffusers/a326-gold/04.webp",
-      "/images/diffusers/a326-gold/05.webp",
     ],
     finish: "Brushed gold aluminum column",
     height: "Ø117.5 × 342 mm",
@@ -126,7 +125,6 @@ export const diffusers: Diffuser[] = [
           "/images/diffusers/a326-gold/02.webp",
           "/images/diffusers/a326-gold/03.webp",
           "/images/diffusers/a326-gold/04.webp",
-          "/images/diffusers/a326-gold/05.webp",
         ],
       },
       {
