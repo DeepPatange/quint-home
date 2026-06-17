@@ -34,9 +34,6 @@ const VISION = [
 
 // Udaipur — the founding palace, where the story begins.
 const UDAIPUR = [
-  "/images/udaipur/udaipur-1.webp",
-  "/images/udaipur/udaipur-2.webp",
-  "/images/udaipur/udaipur-3.webp",
   "/images/udaipur/udaipur-4.webp",
   "/images/udaipur/udaipur-5.webp",
   "/images/udaipur/udaipur-6.webp",
