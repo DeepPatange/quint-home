@@ -43,8 +43,8 @@ export function DiffuserShowcase() {
           </div>
         </FadeUp>
 
-        {/* Three product cards */}
-        <div className="grid gap-y-16 md:grid-cols-3 md:gap-x-8 md:gap-y-0">
+        {/* Product cards — five diffusers wrap to two rows, so keep a row gap */}
+        <div className="grid gap-y-16 md:grid-cols-3 md:gap-x-8 md:gap-y-20">
           {diffusers.map((d, i) => (
             <FadeUp key={d.slug} delay={i * 0.08}>
               <Link href={`/shop/${d.slug}`} className="group block h-full">
