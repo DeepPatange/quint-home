@@ -194,16 +194,6 @@ export default async function ProductPage({
 //  replaced with final per-oil detail once supplied.
 // ============================================================
 function OilProductPage({ oil }: { oil: FragranceOil }) {
-  // Placeholder feature set derived from the oil's data — swap for real copy later.
-  const features = [
-    "70–90% fragrance concentration — true perfumery strength, never watered down.",
-    "IFRA-compliant, blended from responsibly sourced aromatics.",
-    `${oil.volumeML} ml glass bottle — 60 to 140 days of scent per fill.`,
-    "Engineered for Quint waterless cold-air diffusers — no heat, no water.",
-    `A ${oil.mood.toLowerCase()} profile, built around ${oil.origin.toLowerCase()}.`,
-    "Throw tuned for rooms up to 100 m² on a Quint diffuser.",
-  ];
-
   // Diffusers this oil pairs into — the buy box bundles them; this reinforces it.
   const pairDiffusers = diffusers.slice(0, 4);
 
@@ -212,117 +202,6 @@ function OilProductPage({ oil }: { oil: FragranceOil }) {
       {/* §  PRODUCT — gallery + buy box + bundle */}
       <OilHero oil={oil} />
 
-      {/* §  THE SCENT — mood + origin given room, on the oil's own colour */}
-      <section
-        className="py-[var(--spacing-section)]"
-        style={{ backgroundColor: oil.swatch, color: oil.textColor }}
-      >
-        <div className="mx-auto max-w-[var(--container-full)] px-6 md:px-10">
-          <div className="grid gap-10 md:grid-cols-12 md:items-end md:gap-16">
-            <FadeUp className="md:col-span-7">
-              <p
-                className="text-[0.62rem] uppercase tracking-[0.42em]"
-                style={{ opacity: 0.7 }}
-              >
-                The scent
-              </p>
-              <h2
-                className="mt-6 max-w-[18ch] text-balance"
-                style={{
-                  fontFamily: "var(--font-serif)",
-                  fontSize: "var(--text-4xl)",
-                  lineHeight: 1.04,
-                  letterSpacing: "-0.022em",
-                  fontWeight: 400,
-                }}
-              >
-                {oil.mood}.
-              </h2>
-            </FadeUp>
-            <FadeUp delay={0.08} className="md:col-span-5">
-              <p className="max-w-[44ch] text-[var(--text-base)] leading-[1.85]" style={{ opacity: 0.88 }}>
-                {oil.description}
-              </p>
-              <p className="mt-6 text-[0.62rem] uppercase tracking-[0.32em]" style={{ opacity: 0.7 }}>
-                Origin · {oil.origin}
-              </p>
-            </FadeUp>
-          </div>
-        </div>
-      </section>
-
-      {/* §  KEY FEATURES */}
-      <section className="border-b border-[color:var(--color-rule)] bg-[color:var(--color-stardust-soft)] py-[var(--spacing-section)]">
-        <div className="mx-auto max-w-[var(--container-full)] px-6 md:px-10">
-          <FadeUp>
-            <div className="mb-12 flex flex-wrap items-end justify-between gap-4 border-b border-[color:var(--color-rule)] pb-6">
-              <h2
-                style={{
-                  fontFamily: "var(--font-serif)",
-                  fontSize: "var(--text-4xl)",
-                  lineHeight: 1.04,
-                  letterSpacing: "-0.02em",
-                  fontWeight: 400,
-                }}
-              >
-                Key{" "}
-                <em className="text-[color:var(--color-aerial-deep)]">features.</em>
-              </h2>
-              <p className="text-[0.62rem] uppercase tracking-[0.32em] text-[color:var(--color-charcoal-soft)]">
-                {features.length} reasons it&rsquo;s blended well
-              </p>
-            </div>
-          </FadeUp>
-
-          {/* Each feature split into a serif lead + plain description, in its own
-              bordered cell — scannable and easy to understand. */}
-          <FadeUp delay={0.06}>
-            <ul className="grid grid-cols-1 border-l border-t border-[color:var(--color-rule)] md:grid-cols-2">
-              {features.map((feature, i) => {
-                const dash = feature.indexOf(" — ");
-                const lead = dash > -1 ? feature.slice(0, dash) : feature;
-                const desc = dash > -1 ? feature.slice(dash + 3) : "";
-                return (
-                  <li
-                    key={i}
-                    className="group flex min-w-0 gap-5 border-b border-r border-[color:var(--color-rule)] bg-[color:var(--color-white)] p-7 transition-colors duration-500 hover:bg-[color:var(--color-ivory)] md:p-8"
-                  >
-                    <span
-                      className="shrink-0 tabular-nums text-[color:var(--color-clay)]"
-                      style={{
-                        fontFamily: "var(--font-serif)",
-                        fontSize: "var(--text-2xl)",
-                        lineHeight: 1,
-                        letterSpacing: "-0.02em",
-                      }}
-                    >
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    <div className="min-w-0">
-                      <p
-                        className="text-[color:var(--color-charcoal)]"
-                        style={{
-                          fontFamily: "var(--font-serif)",
-                          fontSize: "var(--text-xl)",
-                          lineHeight: 1.2,
-                          letterSpacing: "-0.012em",
-                        }}
-                      >
-                        {lead}
-                      </p>
-                      {desc && (
-                        <p className="mt-2.5 text-[0.9rem] leading-[1.6] text-[color:var(--color-charcoal-soft)]">
-                          {desc}
-                        </p>
-                      )}
-                    </div>
-                  </li>
-                );
-              })}
-            </ul>
-          </FadeUp>
-        </div>
-      </section>
 
       {/* §  PAIRS WITH — the diffusers (bundle in the buy box) */}
       <section className="py-[var(--spacing-section)]">
