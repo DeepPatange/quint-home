@@ -38,31 +38,10 @@ export function DiffuserHero({ product }: { product: Diffuser }) {
     meta: o.mood,
   }));
 
-  // Technical specifications — sourced ONLY from the Quint Home website brief's
-  // "Electronic Diffusers — Product Value Proposition" (no catalogue figures).
-  // Connectivity / smart-home / scheduling apply per model.
-  const isDualMist = product.slug === "dual-mist-at302";
+  // Technical specifications — the per-model spec sheet, taken verbatim from the
+  // Aroma Diffuser Collection product catalogue, plus the warranty.
   const techSpecs: { label: string; value: string }[] = [
-    { label: "Type", value: "Waterless cold-air nebulising electronic diffuser" },
-    { label: "Technology", value: "Cold-air nebulization — no water, no steam, no heat" },
-    { label: "Coverage", value: "200 sq ft (bedroom) to 500+ sq ft (living / open plan), depending on model" },
-    {
-      label: "Connectivity",
-      value: product.bluetooth
-        ? "Bluetooth enabled — app-controlled, plus physical controls"
-        : "Physical controls",
-    },
-    ...(product.bluetooth
-      ? [{ label: "Smart home", value: "Apple Home · Amazon Alexa · Google Home" }]
-      : []),
-    ...(isDualMist
-      ? [{ label: "Scheduling", value: "Set morning and evening schedules and intensity once via the app" }]
-      : []),
-    { label: "Operation", value: "Silent — no fan noise, no water gurgling" },
-    { label: "Design", value: "A sculpted decor object, made to be displayed on a shelf, not hidden" },
-    { label: "Fragrance oils", value: "70–90% concentration · IFRA-compliant · 100 ml refill" },
-    { label: "Oil refill life", value: "Approximately 60–120 days, depending on usage" },
-    { label: "Safety", value: "No open flame, no heat, no water — safe around children and pets" },
+    ...product.specs,
     { label: "Warranty", value: "1-year limited device warranty" },
   ];
 

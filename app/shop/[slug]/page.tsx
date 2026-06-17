@@ -384,7 +384,7 @@ function OilProductPage({ oil }: { oil: FragranceOil }) {
                     </span>
                   </div>
                   <p className="mt-2 text-[0.74rem] leading-[1.4] text-[color:var(--color-charcoal-soft)]">
-                    {d.tagline}
+                    {d.coverageLabel}
                   </p>
                 </Link>
               </FadeUp>
