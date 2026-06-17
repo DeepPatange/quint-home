@@ -77,7 +77,7 @@ export default function BusinessesPage() {
           </FadeUp>
           <FadeUp delay={0.06}>
             <h1
-              className="mt-6 max-w-[14ch] text-balance"
+              className="mt-6 max-w-[14ch] text-balance text-[color:var(--color-white)]"
               style={{
                 fontFamily: "var(--font-serif)",
                 fontSize: "var(--text-6xl)",
@@ -87,7 +87,7 @@ export default function BusinessesPage() {
               }}
             >
               Scent your{" "}
-              <em className="not-italic text-[color:var(--color-aerial-soft)]">
+              <em className="not-italic text-[color:var(--color-white)]">
                 space.
               </em>
             </h1>
@@ -161,7 +161,7 @@ export default function BusinessesPage() {
         <div className="relative z-10 mx-auto w-full max-w-[var(--container-full)] px-6 md:px-10">
           <FadeUp>
             <h2
-              className="max-w-[18ch] text-balance"
+              className="max-w-[18ch] text-balance text-[color:var(--color-white)]"
               style={{
                 fontFamily: "var(--font-serif)",
                 fontSize: "var(--text-4xl)",
@@ -171,7 +171,7 @@ export default function BusinessesPage() {
               }}
             >
               The first thing people notice,{" "}
-              <em className="not-italic text-[color:var(--color-aerial-soft)]">
+              <em className="not-italic text-[color:var(--color-white)]">
                 before they see anything.
               </em>
             </h2>
