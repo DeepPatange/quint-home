@@ -35,33 +35,33 @@ export function SmartHome() {
 
         <FadeUp delay={0.1}>
           <h2
-            className="mx-auto mt-12 max-w-[22ch] text-balance"
+            className="mx-auto mt-12 max-w-[30ch] text-balance"
             style={{
               fontFamily: "var(--font-serif)",
-              fontSize: "var(--text-4xl)",
-              lineHeight: 1.04,
-              letterSpacing: "-0.022em",
+              fontSize: "var(--text-3xl)",
+              lineHeight: 1.14,
+              letterSpacing: "-0.018em",
               fontWeight: 400,
               color: "var(--color-stardust)",
             }}
           >
-            Run it from your phone.
-            <br />
+            Beautifully designed waterless diffusers, curated scent blends, and
+            smart technology that makes exceptional scenting{" "}
             <em className="not-italic text-[color:var(--color-aerial-soft)]">
-              Or just press the button.
+              effortless.
             </em>
           </h2>
         </FadeUp>
 
         <FadeUp delay={0.2}>
           <p
-            className="mx-auto mt-10 max-w-[54ch] text-[var(--text-base)] leading-[1.85]"
+            className="mx-auto mt-8 max-w-[60ch] text-[var(--text-base)] leading-[1.85]"
             style={{ color: "rgba(238, 228, 216, 0.92)" }}
           >
-            Set a schedule in the app, or control it from Apple Home, Alexa, or
-            Google Home. There are physical controls on the diffuser too, so you
-            never need your phone to turn it on. No reeds to replace, no candles
-            to forget about.
+            We make electronic, waterless diffusers that sit at the intersection
+            of technology, design, and fragrance. Because a beautifully scented
+            room shouldn&rsquo;t require compromise — on aesthetics, on
+            performance, or on how it makes you feel.
           </p>
         </FadeUp>
 
