@@ -35,9 +35,26 @@ const IMAGE_MS = 5000;
 
 export function Hero() {
   const [index, setIndex] = useState(0);
+  // Videos autoplay muted (browsers block autoplay with sound); the visitor can
+  // turn the sound on with the toggle, after which it stays on across slides.
+  const [soundOn, setSoundOn] = useState(false);
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
 
   const goTo = (i: number) => setIndex((i + slides.length) % slides.length);
+
+  const toggleSound = () => {
+    setSoundOn((on) => {
+      const next = !on;
+      const v = videoRefs.current[index];
+      if (v) {
+        v.muted = !next;
+        if (next) v.play().catch(() => {});
+      }
+      return next;
+    });
+  };
+
+  const currentIsVideo = slides[index].type === "video";
 
   // Auto-advance: images on a 5s timer; the video advances itself on `ended`.
   useEffect(() => {
@@ -104,7 +121,7 @@ export function Hero() {
                 videoRefs.current[i] = el;
               }}
               src={s.src}
-              muted
+              muted={!soundOn}
               playsInline
               preload="auto"
               onEnded={() => setIndex((p) => (p + 1) % slides.length)}
@@ -139,6 +156,30 @@ export function Hero() {
           <path d="m9 18 6-6-6-6" />
         </svg>
       </button>
+
+      {/* Sound toggle — only on the video slides */}
+      {currentIsVideo && (
+        <button
+          type="button"
+          onClick={toggleSound}
+          aria-label={soundOn ? "Mute video" : "Unmute video"}
+          className="absolute bottom-[5.5rem] right-4 z-30 flex h-10 w-10 items-center justify-center rounded-full border border-[color:var(--color-white)]/30 bg-black/30 text-[color:var(--color-white)]/85 backdrop-blur-sm transition-colors duration-300 hover:text-[color:var(--color-white)] md:right-7"
+        >
+          {soundOn ? (
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" className="h-[18px] w-[18px]">
+              <path d="M11 5 6 9H2v6h4l5 4V5Z" />
+              <path d="M15.5 8.5a5 5 0 0 1 0 7" />
+              <path d="M18.5 5.5a9 9 0 0 1 0 13" />
+            </svg>
+          ) : (
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" className="h-[18px] w-[18px]">
+              <path d="M11 5 6 9H2v6h4l5 4V5Z" />
+              <path d="m23 9-6 6" />
+              <path d="m17 9 6 6" />
+            </svg>
+          )}
+        </button>
+      )}
 
       {/* === Bottom hairline metadata strip === */}
       <div className="relative z-20 mx-auto w-full max-w-[var(--container-full)] border-t border-[color:var(--color-white)]/20 px-6 md:px-10">
