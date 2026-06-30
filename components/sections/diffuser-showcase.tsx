@@ -3,6 +3,7 @@ import Image from "next/image";
 import { diffusers } from "@/lib/data/diffusers";
 import { formatINR } from "@/lib/utils";
 import { FadeUp } from "@/components/motion/fade-up";
+import { HCarousel } from "@/components/ui/h-carousel";
 
 /**
  * Diffuser Showcase — features the full diffuser range in editorial cards.
@@ -43,11 +44,15 @@ export function DiffuserShowcase() {
           </div>
         </FadeUp>
 
-        {/* Product cards — five diffusers wrap to two rows, so keep a row gap */}
-        <div className="grid gap-y-16 md:grid-cols-3 md:gap-x-8 md:gap-y-20">
-          {diffusers.map((d, i) => (
-            <FadeUp key={d.slug} delay={i * 0.08}>
-              <Link href={`/shop/${d.slug}`} className="group block h-full">
+        {/* Product cards — single-line horizontal carousel */}
+        <FadeUp>
+          <HCarousel ariaLabel="Diffusers" arrowTop="top-[34%]">
+            {diffusers.map((d, i) => (
+              <Link
+                key={d.slug}
+                href={`/shop/${d.slug}`}
+                className="group block w-[80%] shrink-0 snap-start sm:w-[19rem] lg:w-[21rem]"
+              >
                 <div className="relative aspect-[4/5] overflow-hidden bg-[color:var(--color-stardust-soft)]">
                   <Image
                     src={d.image}
@@ -98,9 +103,9 @@ export function DiffuserShowcase() {
                   </p>
                 </div>
               </Link>
-            </FadeUp>
-          ))}
-        </div>
+            ))}
+          </HCarousel>
+        </FadeUp>
 
         {/* Closing link */}
         <FadeUp delay={0.3}>

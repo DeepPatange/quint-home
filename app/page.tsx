@@ -1,6 +1,7 @@
 import { Hero } from "@/components/sections/hero";
 import { DiffuserShowcase } from "@/components/sections/diffuser-showcase";
 import { ScentLibrary } from "@/components/sections/scent-library";
+import { ReedCandles } from "@/components/sections/reed-candles";
 import { HowToUse } from "@/components/sections/how-to-use";
 import { Atmosphere } from "@/components/sections/atmosphere";
 import { SmartHome } from "@/components/sections/smart-home";
@@ -22,6 +23,7 @@ export default function Home() {
       <USPs />
       <DiffuserShowcase />
       <ScentLibrary />
+      <ReedCandles />
       <HowToUse />
       <MonogramDivider className="py-[var(--spacing-section-sm)]" />
       <FounderTeaser />

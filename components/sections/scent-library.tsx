@@ -3,6 +3,7 @@ import Image from "next/image";
 import { oils } from "@/lib/data/oils";
 import { FadeUp } from "@/components/motion/fade-up";
 import { SectionHeader } from "@/components/ui/section-header";
+import { HCarousel } from "@/components/ui/h-carousel";
 import { formatINR } from "@/lib/utils";
 
 export function ScentLibrary() {
@@ -30,24 +31,26 @@ export function ScentLibrary() {
           }
         />
 
-        <div className="mt-12 grid grid-cols-2 gap-px overflow-hidden bg-[color:var(--color-rule)] md:grid-cols-4">
-          {oils.map((o, i) => {
-            // Every tile is a photographic plate (uses the oil's image).
-            const photographic = true;
-            const tileBg = photographic
-              ? { backgroundColor: "var(--color-stardust-soft)" }
-              : { backgroundColor: o.swatch, color: o.textColor };
-            const fg = photographic
-              ? "text-[color:var(--color-stardust)]"
-              : "";
+        <FadeUp>
+          <div className="mt-12">
+            <HCarousel ariaLabel="Fragrance oils">
+              {oils.map((o, i) => {
+                // Every tile is a photographic plate (uses the oil's image).
+                const photographic = true;
+                const tileBg = photographic
+                  ? { backgroundColor: "var(--color-stardust-soft)" }
+                  : { backgroundColor: o.swatch, color: o.textColor };
+                const fg = photographic
+                  ? "text-[color:var(--color-stardust)]"
+                  : "";
 
-            return (
-              <FadeUp key={o.slug} delay={i * 0.04} className="contents">
-                <Link
-                  href={`/shop/${o.slug}`}
-                  className="group relative flex aspect-[4/5] flex-col justify-between overflow-hidden p-4 transition-[padding] duration-700"
-                  style={tileBg}
-                >
+                return (
+                  <Link
+                    key={o.slug}
+                    href={`/shop/${o.slug}`}
+                    className="group relative flex aspect-[4/5] w-[58%] shrink-0 snap-start flex-col justify-between overflow-hidden p-4 sm:w-[13.5rem] lg:w-[15rem]"
+                    style={tileBg}
+                  >
                   {photographic && (
                     <>
                       <Image
@@ -104,11 +107,12 @@ export function ScentLibrary() {
                       </span>
                     </div>
                   </div>
-                </Link>
-              </FadeUp>
-            );
-          })}
-        </div>
+                  </Link>
+                );
+              })}
+            </HCarousel>
+          </div>
+        </FadeUp>
       </div>
     </section>
   );
