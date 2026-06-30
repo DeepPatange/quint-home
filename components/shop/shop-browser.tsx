@@ -17,7 +17,7 @@ import { formatINR } from "@/lib/utils";
  * Kept on-brand: hairline rules, uppercase tracking, serif names, no shadows.
  */
 
-type CategoryKey = "all" | "diffusers" | "oils";
+type CategoryKey = "diffusers" | "oils" | "other";
 
 interface BrowseItem {
   slug: string;
@@ -25,7 +25,7 @@ interface BrowseItem {
   href: string;
   image: string;
   priceINR: number;
-  category: Exclude<CategoryKey, "all">;
+  category: "diffusers" | "oils";
   categoryLabel: string;
   meta: string;
   /** Lowercased haystack of everything searchable for this product. */
@@ -33,9 +33,9 @@ interface BrowseItem {
 }
 
 const CATEGORIES: { key: CategoryKey; label: string }[] = [
-  { key: "all", label: "Everything" },
   { key: "diffusers", label: "Diffusers" },
   { key: "oils", label: "Fragrance Oils" },
+  { key: "other", label: "Reed Diffusers & Candles" },
 ];
 
 // Flatten both product families into one searchable list, once.
@@ -88,7 +88,7 @@ const ITEMS: BrowseItem[] = [
 ];
 
 export function ShopBrowser() {
-  const [category, setCategory] = useState<CategoryKey>("all");
+  const [category, setCategory] = useState<CategoryKey>("diffusers");
   const [query, setQuery] = useState("");
   const [open, setOpen] = useState(false);
   const ddRef = useRef<HTMLDivElement>(null);
@@ -113,22 +113,19 @@ export function ShopBrowser() {
   }, [open]);
 
   const currentLabel =
-    CATEGORIES.find((c) => c.key === category)?.label ?? "Everything";
+    CATEGORIES.find((c) => c.key === category)?.label ?? "Diffusers";
 
   const results = useMemo(() => {
     const q = query.trim().toLowerCase();
     return ITEMS.filter((item) => {
-      if (category !== "all" && item.category !== category) return false;
+      if (item.category !== category) return false;
       if (!q) return true;
       // Match every whitespace-separated term — narrows as you type more.
       return q.split(/\s+/).every((term) => item.keywords.includes(term));
     });
   }, [category, query]);
 
-  const total =
-    category === "all"
-      ? ITEMS.length
-      : ITEMS.filter((i) => i.category === category).length;
+  const total = ITEMS.filter((i) => i.category === category).length;
 
   return (
     <section
@@ -234,17 +231,19 @@ export function ShopBrowser() {
         </div>
 
         {/* Result count */}
-        <p className="mt-5 text-[0.6rem] uppercase tracking-[0.32em] text-[color:var(--color-charcoal-soft)]">
-          {results.length === total
-            ? `${total} products`
-            : `${results.length} of ${total}`}
-          {query && (
-            <span className="normal-case tracking-normal">
-              {" "}
-              — for &ldquo;{query.trim()}&rdquo;
-            </span>
-          )}
-        </p>
+        {total > 0 && (
+          <p className="mt-5 text-[0.6rem] uppercase tracking-[0.32em] text-[color:var(--color-charcoal-soft)]">
+            {results.length === total
+              ? `${total} products`
+              : `${results.length} of ${total}`}
+            {query && (
+              <span className="normal-case tracking-normal">
+                {" "}
+                — for &ldquo;{query.trim()}&rdquo;
+              </span>
+            )}
+          </p>
+        )}
 
         {/* Results */}
         {results.length > 0 ? (
@@ -288,6 +287,44 @@ export function ShopBrowser() {
               </li>
             ))}
           </ul>
+        ) : total === 0 ? (
+          <div className="mt-10 border-t border-[color:var(--color-rule)] pt-10">
+            <p
+              className="max-w-[30ch] text-balance"
+              style={{
+                fontFamily: "var(--font-serif)",
+                fontSize: "var(--text-2xl)",
+                lineHeight: 1.1,
+                letterSpacing: "-0.014em",
+                fontWeight: 400,
+              }}
+            >
+              Reed diffusers &amp; candles{" "}
+              <em className="text-[color:var(--color-aerial-deep)]">
+                are coming soon.
+              </em>
+            </p>
+            <p className="mt-3 max-w-[42ch] text-[0.92rem] leading-[1.65] text-[color:var(--color-charcoal-soft)]">
+              We&rsquo;re finishing the range. In the meantime, explore the
+              diffusers and fragrance oils.
+            </p>
+            <div className="mt-6 flex flex-wrap items-center gap-x-8 gap-y-3">
+              <button
+                type="button"
+                onClick={() => setCategory("diffusers")}
+                className="border-b border-[color:var(--color-charcoal)] pb-1.5 text-[0.72rem] uppercase tracking-[0.24em] transition-colors duration-300 hover:border-[color:var(--color-clay)] hover:text-[color:var(--color-clay)]"
+              >
+                View diffusers →
+              </button>
+              <button
+                type="button"
+                onClick={() => setCategory("oils")}
+                className="text-[0.72rem] uppercase tracking-[0.24em] text-[color:var(--color-charcoal-soft)] transition-colors duration-300 hover:text-[color:var(--color-charcoal)]"
+              >
+                View oils →
+              </button>
+            </div>
+          </div>
         ) : (
           <div className="mt-10 border-t border-[color:var(--color-rule)] pt-10">
             <p
@@ -310,7 +347,7 @@ export function ShopBrowser() {
               type="button"
               onClick={() => {
                 setQuery("");
-                setCategory("all");
+                setCategory("diffusers");
               }}
               className="mt-6 border-b border-[color:var(--color-charcoal)] pb-1.5 text-[0.72rem] uppercase tracking-[0.24em] transition-colors duration-300 hover:border-[color:var(--color-clay)] hover:text-[color:var(--color-clay)]"
             >
