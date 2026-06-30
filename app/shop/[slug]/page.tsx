@@ -8,6 +8,7 @@ import { formatINR } from "@/lib/utils";
 import { FadeUp } from "@/components/motion/fade-up";
 import { DiffuserHero } from "@/components/product/diffuser-hero";
 import { OilHero } from "@/components/product/oil-hero";
+import { ScentFinder } from "@/components/sections/scent-finder";
 import type { FragranceOil } from "@/lib/types";
 
 type Params = { slug: string };
@@ -234,6 +235,8 @@ function OilProductPage({ oil }: { oil: FragranceOil }) {
         </div>
       </section>
 
+      {/* §  FIND YOUR SCENT */}
+      <ScentFinder />
     </article>
   );
 }
