@@ -67,9 +67,6 @@ export function Footer() {
 
           <div className="flex flex-col items-start md:items-end md:justify-between">
             <Logo className="h-9 w-auto text-[color:var(--color-charcoal)]" />
-            <p className="mt-6 max-w-[28ch] text-[0.9rem] leading-[1.7] text-[color:var(--color-charcoal-soft)] md:text-right">
-              Mumbai-born. Built around the question of why your home doesn&rsquo;t smell like a great hotel.
-            </p>
           </div>
         </div>
 
@@ -81,10 +78,6 @@ export function Footer() {
               Hotel-grade fragrance for the considered Indian home. Designed in Mumbai.
             </p>
             <p className="mt-6 text-[0.78rem] tracking-[0.06em] text-[color:var(--color-charcoal-soft)]">
-              Rusera Lifestyle
-              <br />
-              Mumbai, India
-              <br />
               <a
                 href="mailto:hello@quinthome.in"
                 className="underline-offset-4 hover:underline"
@@ -114,8 +107,8 @@ export function Footer() {
 
         {/* Baseline */}
         <div className="mt-20 flex flex-col-reverse items-start justify-between gap-4 border-t border-[color:var(--color-rule)] pt-6 text-[0.72rem] uppercase tracking-[0.18em] text-[color:var(--color-charcoal-soft)] md:flex-row md:items-center">
-          <span>© {new Date().getFullYear()} Quint Home · Air Elevated</span>
-          <span>IFRA-compliant</span>
+          <span>© {new Date().getFullYear()} Quint Home · Create Your Sanctuary</span>
+          <span>Rusera Lifestyle</span>
         </div>
       </div>
     </footer>
