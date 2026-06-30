@@ -1,9 +1,6 @@
 import { FadeUp } from "@/components/motion/fade-up";
 import { Monogram } from "@/components/brand/logo";
 
-// Per the brief: "smart home integrated — Apple Home, Amazon Alexa, Google Home".
-const integrations = ["Apple Home", "Amazon Alexa", "Google Home"];
-
 export function SmartHome() {
   return (
     <section className="relative overflow-hidden bg-[color:var(--color-verdant)] py-[var(--spacing-section)] text-[color:var(--color-stardust)]">
@@ -57,29 +54,14 @@ export function SmartHome() {
           </h2>
         </FadeUp>
 
-        <FadeUp delay={0.2}>
-          <div className="mx-auto mt-9 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-[0.78rem] uppercase tracking-[0.24em] text-[color:var(--color-stardust)]/85">
-            <span>Waterless Diffusers</span>
-            <span className="text-[color:var(--color-stardust)]/35">·</span>
-            <span>Reed Diffusers &amp; Candles</span>
-            <span className="text-[color:var(--color-stardust)]/35">·</span>
-            <span>Fragrance Oils</span>
-          </div>
-        </FadeUp>
-
-        <FadeUp delay={0.3}>
-          <div className="mt-20 border-t border-[color:var(--color-stardust)]/15 pt-12">
-            <p className="mx-auto text-center text-[0.6rem] uppercase tracking-[0.42em] text-[color:var(--color-stardust)]/50">
-              Works with
-            </p>
-            <div className="mx-auto mt-8 grid max-w-[40rem] grid-cols-3 gap-6">
-              {integrations.map((name) => (
-                <div key={name} className="flex items-center justify-center">
-                  <span className="text-[0.86rem] uppercase tracking-[0.18em] text-[color:var(--color-stardust)]/90">
-                    {name}
-                  </span>
-                </div>
-              ))}
+        <FadeUp delay={0.25}>
+          <div className="mt-16 border-t border-[color:var(--color-stardust)]/15 pt-12">
+            <div className="mx-auto flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-[0.86rem] uppercase tracking-[0.2em] text-[color:var(--color-stardust)]/90">
+              <span>Waterless Diffusers</span>
+              <span className="text-[color:var(--color-stardust)]/35">·</span>
+              <span>Reed Diffusers &amp; Candles</span>
+              <span className="text-[color:var(--color-stardust)]/35">·</span>
+              <span>Fragrance Oils</span>
             </div>
           </div>
         </FadeUp>
