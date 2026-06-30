@@ -41,7 +41,7 @@ const groups = [
       },
       {
         q: "What is a Hotel Credential oil?",
-        a: "Two of our eight oils, Grand Lobby and The Arrival, are Hotel Credential blends: composed to the same brief as the signature scenting you find in considered public spaces, then made for the home. They are more complex to blend, carry a Hotel Credential badge, and sit at a small price premium over the standard oils.",
+        a: "Two of our oils, Grand Lobby and The Arrival, are Hotel Credential blends: composed to the same brief as the signature scenting you find in considered public spaces, then made for the home. They are more complex to blend, carry a Hotel Credential badge, and sit at a small price premium over the standard oils.",
       },
     ],
   },

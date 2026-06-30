@@ -4,7 +4,7 @@ import { ScentFinder } from "@/components/sections/scent-finder";
 export const metadata: Metadata = {
   title: "Find Your Scent",
   description:
-    "Answer two quick questions and we'll point you to one of the eight Quint Home fragrance oils.",
+    "Answer two quick questions and we'll point you to one of the Quint Home fragrance oils.",
 };
 
 export default function FindYourScentPage() {

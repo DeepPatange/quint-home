@@ -1,9 +1,9 @@
 import type { FragranceOil } from "../types";
 
 // ============================================================
-//  Quint Home — 8 Signature Scents
+//  Quint Home — Signature Scents
 //  Source of truth: Quint Home Website Brief vF — "Fragrance
-//  Oils, 8 Signature Scents at Launch". Names, one-liners and
+//  Oils, Signature Scents at Launch". Names, one-liners and
 //  note pyramids are taken from the brief. Original supplier
 //  names are intentionally NOT referenced anywhere.
 // ============================================================

@@ -94,7 +94,7 @@ export function ScentFinder() {
             <>
               Two questions, two taps.
               <br />
-              You&rsquo;ll land on one of the eight oils.
+              You&rsquo;ll land on one of our oils.
             </>
           }
         />
