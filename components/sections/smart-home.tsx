@@ -36,12 +36,12 @@ export function SmartHome() {
 
         <FadeUp delay={0.1}>
           <h2
-            className="mx-auto mt-12 max-w-[20ch] text-balance"
+            className="mx-auto mt-12 max-w-[34ch]"
             style={{
               fontFamily: "var(--font-serif)",
-              fontSize: "var(--text-4xl)",
-              lineHeight: 1.08,
-              letterSpacing: "-0.022em",
+              fontSize: "var(--text-3xl)",
+              lineHeight: 1.16,
+              letterSpacing: "-0.018em",
               fontWeight: 400,
               color: "var(--color-stardust)",
             }}
@@ -49,7 +49,9 @@ export function SmartHome() {
             Objects that elevate your home.
             <br />
             <em className="not-italic text-[color:var(--color-aerial-soft)]">
-              Fragrances that stay with you.
+              Fragrances that stay
+              <br />
+              with you.
             </em>
           </h2>
         </FadeUp>
