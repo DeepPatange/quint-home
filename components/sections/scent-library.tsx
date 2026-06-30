@@ -113,6 +113,27 @@ export function ScentLibrary() {
             </HCarousel>
           </div>
         </FadeUp>
+
+        {/* Closing links — browse the full range (after the oils) */}
+        <FadeUp delay={0.2}>
+          <div className="mt-14 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 border-t border-[color:var(--color-rule)] pt-10">
+            <Link
+              href="/shop?category=diffusers"
+              className="group inline-flex items-center gap-3 border-b border-[color:var(--color-charcoal)] pb-1.5 text-[0.72rem] uppercase tracking-[0.32em] transition-colors duration-500 hover:text-[color:var(--color-clay)] hover:border-[color:var(--color-clay)]"
+            >
+              See every diffuser
+              <span className="transition-transform duration-500 group-hover:translate-x-1">
+                →
+              </span>
+            </Link>
+            <Link
+              href="/shop?category=oils"
+              className="text-[0.72rem] uppercase tracking-[0.32em] text-[color:var(--color-charcoal-soft)] hover:text-[color:var(--color-charcoal)] transition-colors duration-500"
+            >
+              Or browse the oils →
+            </Link>
+          </div>
+        </FadeUp>
       </div>
     </section>
   );
