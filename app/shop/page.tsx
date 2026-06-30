@@ -20,15 +20,12 @@ export default function ShopPage() {
       {/* ====================================================
           § HERO MASTHEAD
           ==================================================== */}
-      <section className="border-b border-[color:var(--color-rule)] pt-10 md:pt-14">
+      <section className="border-b border-[color:var(--color-rule)] pt-6 md:pt-8">
         <div className="mx-auto max-w-[var(--container-full)] px-6 md:px-10">
           <div className="grid items-end gap-8 pb-9 md:grid-cols-12 md:gap-16">
             <FadeUp delay={0.05} className="md:col-span-7">
-              <p className="text-[0.62rem] uppercase tracking-[0.42em] text-[color:var(--color-charcoal-soft)]">
-                Shop · Diffusers · Oils
-              </p>
               <h1
-                className="mt-7 max-w-[16ch] text-balance"
+                className="max-w-[16ch] text-balance"
                 style={{
                   fontFamily: "var(--font-serif)",
                   fontSize: "var(--text-5xl)",
