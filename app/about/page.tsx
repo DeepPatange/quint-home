@@ -293,9 +293,9 @@ export default function AboutPage() {
                 className="text-balance text-[color:var(--color-stardust)]"
                 style={{
                   fontFamily: "var(--font-serif)",
-                  fontSize: "var(--text-3xl)",
-                  lineHeight: 1.16,
-                  letterSpacing: "-0.016em",
+                  fontSize: "var(--text-2xl)",
+                  lineHeight: 1.24,
+                  letterSpacing: "-0.014em",
                   fontWeight: 400,
                 }}
               >
