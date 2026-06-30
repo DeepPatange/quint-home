@@ -55,7 +55,7 @@ const ITEMS: BrowseItem[] = [
       d.tagline,
       d.finish,
       ...(d.bestFor ?? []),
-      d.bluetooth ? "bluetooth" : "",
+      d.bluetooth ? "app app-controlled companion app control" : "",
       "diffuser",
     ]
       .join(" ")

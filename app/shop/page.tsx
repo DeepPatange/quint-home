@@ -163,7 +163,7 @@ export default function ShopPage() {
                       </div>
                       {d.bluetooth && (
                         <span className="text-[0.54rem] uppercase tracking-[0.28em] text-[color:var(--color-charcoal-soft)]">
-                          Bluetooth
+                          App control
                         </span>
                       )}
                     </div>

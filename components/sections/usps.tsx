@@ -30,9 +30,9 @@ const usps: Usp[] = [
   },
   {
     n: "02",
-    lead: "App-controlled, smart-home ready",
+    lead: "App-controllable",
     image: "/images/usp/usp-2.webp",
-    stat: { icon: Smartphone, value: "Apple · Alexa · Google" },
+    stat: { icon: Smartphone, value: "Set it from your phone" },
   },
   {
     n: "03",

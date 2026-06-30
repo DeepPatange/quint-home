@@ -82,7 +82,7 @@ const moments: Moment[] = [
   },
 ];
 
-const partners = ["Apple Home", "Google Home", "Alexa", "Matter"];
+const partners = ["Companion app", "iOS & Android", "On-device schedule"];
 
 export function Ritual() {
   return (
@@ -178,7 +178,7 @@ export function Ritual() {
           ))}
         </div>
 
-        {/* Footer — supporting paragraph + smart-home line */}
+        {/* Footer — supporting paragraph + app-control line */}
         <FadeUp delay={0.1}>
           <footer className="mt-20 grid gap-10 border-t border-[color:var(--color-rule)] pt-10 md:grid-cols-12 md:gap-12">
             <div className="md:col-span-2">
@@ -208,7 +208,7 @@ export function Ritual() {
 
             <div className="md:col-span-3 md:text-right">
               <p className="text-[0.6rem] uppercase tracking-[0.32em] text-[color:var(--color-charcoal-soft)]">
-                Works with
+                Control
               </p>
               <ul className="mt-3 flex flex-wrap gap-x-5 gap-y-2 md:justify-end">
                 {partners.map((p) => (

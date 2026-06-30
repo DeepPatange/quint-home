@@ -7,7 +7,7 @@ const tokens = [
   "70–90% concentrate",
   "Waterless · Silent · App-controlled",
   "IFRA-Compliant",
-  "Apple Home · Alexa · Google Home",
+  "Set once, from the app",
 ];
 
 // Repeat the loop so transform: translateX(-50%) creates seamless cycle.

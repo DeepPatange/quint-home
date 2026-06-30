@@ -23,7 +23,7 @@ const groups = [
       },
       {
         q: "What does it take to set up?",
-        a: "Fill the oil reservoir, pair with the Quint Home companion app once via Bluetooth, set a morning and evening schedule, and the device runs on its own from that point. No daily interaction is needed. The Plug-In model needs no app at all — it runs on a built-in 24-hour cyclic timer.",
+        a: "Fill the oil reservoir, pair with the Quint Home companion app once, set a morning and evening schedule, and the device runs on its own from that point. No daily interaction is needed. The Plug-In model needs no app at all — it runs on a built-in 24-hour cyclic timer.",
       },
     ],
   },
@@ -51,11 +51,11 @@ const groups = [
     items: [
       {
         q: "How do I control it?",
-        a: "Over Bluetooth, through the Quint Home companion app for iOS and Android. Pair once, then set your schedules and intensity. Every model except the Plug-In is Bluetooth-enabled; the Plug-In runs on a built-in 24-hour cyclic timer with no app required.",
+        a: "Through the Quint Home companion app for iOS and Android. Pair once, then set your schedules and intensity. Every model except the Plug-In is app-controllable; the Plug-In runs on a built-in 24-hour cyclic timer with no app required.",
       },
       {
         q: "Does it need Wi-Fi to work?",
-        a: "No. The diffusers run entirely over Bluetooth and an on-device schedule — no Wi-Fi, no account, and no cloud. You adjust settings from your phone when it is in range, and the device keeps to its schedule on its own.",
+        a: "No. The diffusers run from the companion app and an on-device schedule — no Wi-Fi, no account, and no cloud. You adjust settings from your phone, and the device keeps to its schedule on its own.",
       },
     ],
   },

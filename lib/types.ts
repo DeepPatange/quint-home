@@ -49,7 +49,7 @@ export interface Diffuser {
   tagline: string;
   description: string;
   priceINR: number;
-  /** Bluetooth companion-app control. 5 of 6 catalogue models support it (A815 does not). */
+  /** Companion-app control. 5 of 6 catalogue models support it (A815 does not). */
   bluetooth: boolean;
   coverageSqFt: [number, number];
   /** Display string for coverage, verbatim/derived from the catalogue (e.g. "Up to 100 m² (≈1,075 sq ft)"). */
@@ -67,7 +67,6 @@ export interface Diffuser {
   /** Present when the model ships in more than one colour/finish. The top-level
    *  image/gallery/finish mirror colors[0] (the default). */
   colors?: DiffuserColor[];
-  smartHome?: ("apple" | "alexa" | "google")[];
   specs: { label: string; value: string }[];
 }
 

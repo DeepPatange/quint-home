@@ -34,7 +34,7 @@ const DESC_CARE =
 const OP_SILENT = "Silent — no fan noise, no water gurgling.";
 const OP_APP =
   OP_SILENT +
-  " Bluetooth enabled — app-controlled via companion app as well as physical controls.";
+  " App-controllable via the companion app, alongside physical controls.";
 const OP_APP_SCHEDULE =
   OP_APP +
   " Set morning and evening fragrance schedules and intensity levels once via app.";
@@ -103,7 +103,7 @@ const diffusersByDefinition: Diffuser[] = [
       "Intuitive touch control panel with ambient mood lighting",
       "Programmable timer for scheduled, automated diffusion",
       "Leak-proof dumping design for safe placement anywhere",
-      "Bluetooth connectivity — control from your phone via the companion app",
+      "App control — adjust everything from your phone via the companion app",
     ],
     image: "/images/diffusers/a326-gold/gold-v2-01.webp",
     gallery: [
@@ -149,7 +149,7 @@ const diffusersByDefinition: Diffuser[] = [
       { label: "Net Weight", value: "1.35 kg" },
       { label: "Oil Consumption", value: "0.05 – 0.72 g/h" },
       { label: "Coverage Area", value: "Up to 100 m² / 300 m³" },
-      { label: "Connectivity", value: "Bluetooth" },
+      { label: "Connectivity", value: "Companion app" },
     ],
   },
   {
@@ -171,7 +171,7 @@ const diffusersByDefinition: Diffuser[] = [
       "Simple knob control — no digital interface needed",
       "Leak-proof dumping design for spill-free placement",
       "120 ml capacity for long, uninterrupted diffusion sessions",
-      "Bluetooth compatible — app control available alongside the knob",
+      "App-controllable — control available alongside the knob",
     ],
     image: "/images/diffusers/fabric-a974/loom-v2-01.webp",
     gallery: [
@@ -191,7 +191,7 @@ const diffusersByDefinition: Diffuser[] = [
       { label: "Oil Consumption", value: "0.11 – 0.72 g/h" },
       { label: "Coverage Area", value: "Up to 55 m² / 165 m³" },
       { label: "Control", value: "Knob" },
-      { label: "Connectivity", value: "Bluetooth" },
+      { label: "Connectivity", value: "Companion app" },
     ],
   },
   {
@@ -213,7 +213,7 @@ const diffusersByDefinition: Diffuser[] = [
       "Spill-proof design for safe, worry-free placement",
       "Premium aluminum alloy build with a refined finish",
       "USB-powered (5V DC) — works with any standard adapter",
-      "Bluetooth compatible — independently control each mist outlet from your phone",
+      "App-controllable — independently control each mist outlet from your phone",
     ],
     image: "/images/diffusers/dual-mist-at302/pillar-v2-01.webp",
     video: "https://res.cloudinary.com/dnv4kq8ml/video/upload/v1780759975/Video_Display_r7dj6z.mp4",
@@ -234,7 +234,7 @@ const diffusersByDefinition: Diffuser[] = [
       { label: "Noise Level", value: "≤35 dB" },
       { label: "Oil Consumption", value: "0.02 – 0.5 g/h" },
       { label: "Coverage Area", value: "Up to 50 m² / 150 m³" },
-      { label: "Connectivity", value: "Bluetooth" },
+      { label: "Connectivity", value: "Companion app" },
     ],
   },
   {
@@ -256,7 +256,7 @@ const diffusersByDefinition: Diffuser[] = [
       "Premium glass-like acrylic (PMMA) finish",
       "Upgraded spill-proof design for reliable daily use",
       "USB-powered (5V DC) — easy placement anywhere",
-      "Bluetooth compatible — adjust fragrance settings from your phone",
+      "App-controllable — adjust fragrance settings from your phone",
     ],
     image: "/images/diffusers/clock-at370/ember-v2-01.webp",
     video: "https://res.cloudinary.com/dnv4kq8ml/video/upload/Video_Display_gggg5v.mp4",
@@ -277,7 +277,7 @@ const diffusersByDefinition: Diffuser[] = [
       { label: "Oil Consumption", value: "0.09 – 0.25 g/h" },
       { label: "Coverage Area", value: "Up to 50 m² / 150 m³" },
       { label: "Display", value: "LED Clock with Auto Network Time Sync" },
-      { label: "Connectivity", value: "Bluetooth" },
+      { label: "Connectivity", value: "Companion app" },
     ],
   },
 ];
