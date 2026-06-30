@@ -26,6 +26,11 @@ const usps = [
     lead: "A decor object, not an appliance",
     body: "A sculptural form designed to sit on your shelf with poise and flair.",
   },
+  {
+    n: "05",
+    lead: "Wireless and rechargeable",
+    body: "Premium column models run cord-free on a built-in rechargeable battery — place them anywhere, no outlet required.",
+  },
 ];
 
 export function USPs() {
@@ -58,7 +63,7 @@ export function USPs() {
             {usps.map((u) => (
               <li
                 key={u.n}
-                className="group flex min-w-0 gap-5 border-b border-r border-[color:var(--color-rule)] bg-[color:var(--color-white)] p-7 transition-colors duration-500 hover:bg-[color:var(--color-ivory)] md:p-10"
+                className="group flex min-w-0 gap-5 border-b border-r border-[color:var(--color-rule)] bg-[color:var(--color-white)] p-7 transition-colors duration-500 hover:bg-[color:var(--color-ivory)] md:p-10 [&:last-child:nth-child(odd)]:md:col-span-2"
               >
                 <span
                   className="shrink-0 tabular-nums text-[color:var(--color-clay)]"
