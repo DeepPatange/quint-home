@@ -12,7 +12,7 @@ import { HCarousel } from "@/components/ui/h-carousel";
  */
 export function DiffuserShowcase() {
   return (
-    <section className="bg-[color:var(--color-white)] py-[var(--spacing-section)]">
+    <section className="bg-[color:var(--color-white)] pt-[var(--spacing-section)] pb-[var(--spacing-section-sm)]">
       <div className="mx-auto max-w-[var(--container-full)] px-6 md:px-10">
         {/* Section header */}
         <FadeUp>
@@ -51,7 +51,7 @@ export function DiffuserShowcase() {
               <Link
                 key={d.slug}
                 href={`/shop/${d.slug}`}
-                className="group block w-[80%] shrink-0 snap-start sm:w-[19rem] lg:w-[21rem]"
+                className="group block w-[84%] shrink-0 snap-start sm:w-[46%] lg:w-[calc((100%_-_3.5rem)/3)]"
               >
                 <div className="relative aspect-[4/5] overflow-hidden bg-[color:var(--color-stardust-soft)]">
                   <Image

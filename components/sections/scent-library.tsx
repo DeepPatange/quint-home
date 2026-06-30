@@ -8,7 +8,7 @@ import { formatINR } from "@/lib/utils";
 
 export function ScentLibrary() {
   return (
-    <section className="bg-[color:var(--color-ivory)] py-[var(--spacing-section)]">
+    <section className="bg-[color:var(--color-ivory)] pt-[var(--spacing-section-sm)] pb-[var(--spacing-section)]">
       <div className="mx-auto max-w-[var(--container-full)] px-6 md:px-10">
         <SectionHeader
           chapter="The Library"
@@ -48,7 +48,7 @@ export function ScentLibrary() {
                   <Link
                     key={o.slug}
                     href={`/shop/${o.slug}`}
-                    className="group relative flex aspect-[4/5] w-[58%] shrink-0 snap-start flex-col justify-between overflow-hidden p-4 sm:w-[13.5rem] lg:w-[15rem]"
+                    className="group relative flex aspect-[4/5] w-[72%] shrink-0 snap-start flex-col justify-between overflow-hidden p-5 sm:w-[46%] lg:w-[calc((100%_-_3.5rem)/3)]"
                     style={tileBg}
                   >
                   {photographic && (
