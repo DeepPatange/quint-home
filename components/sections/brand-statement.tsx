@@ -49,7 +49,7 @@ export function BrandStatement() {
         {/* Concentration contrast — a symmetric two-side comparison */}
         <FadeUp delay={0.12}>
           <div className="mx-auto mt-14 max-w-[46rem] md:mt-16">
-            <p className="text-center text-[0.58rem] uppercase tracking-[0.36em] text-[color:var(--color-charcoal-soft)]">
+            <p className="mx-auto w-fit text-center text-[0.58rem] uppercase tracking-[0.36em] text-[color:var(--color-charcoal-soft)]">
               Fragrance concentration
             </p>
 

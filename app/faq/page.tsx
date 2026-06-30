@@ -188,7 +188,7 @@ export default function FAQPage() {
       <section className="bg-[color:var(--color-stardust-soft)] py-[var(--spacing-section)]">
         <div className="mx-auto max-w-[var(--container-content)] px-6 text-center md:px-10">
           <FadeUp>
-            <p className="text-[0.62rem] uppercase tracking-[0.42em] text-[color:var(--color-charcoal-soft)]">
+            <p className="mx-auto w-fit text-[0.62rem] uppercase tracking-[0.42em] text-[color:var(--color-charcoal-soft)]">
               <Monogram className="mr-1.5 inline-block h-[0.9em] w-[0.9em] align-[-0.12em]" />Still curious
             </p>
           </FadeUp>

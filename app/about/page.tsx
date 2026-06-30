@@ -345,7 +345,7 @@ export default function AboutPage() {
       <section className="pb-[var(--spacing-section)] pt-12 md:pt-16">
         <div className="mx-auto max-w-[var(--container-content)] px-6 text-center md:px-10">
           <FadeUp>
-            <p className="text-[0.62rem] uppercase tracking-[0.42em] text-[color:var(--color-charcoal-soft)]">
+            <p className="mx-auto w-fit text-[0.62rem] uppercase tracking-[0.42em] text-[color:var(--color-charcoal-soft)]">
               The Invitation
             </p>
           </FadeUp>

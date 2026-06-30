@@ -152,7 +152,7 @@ export default async function ProductPage({
       <section className="border-t border-[color:var(--color-rule)] py-[var(--spacing-section)]">
         <div className="mx-auto max-w-[var(--container-content)] px-6 text-center md:px-10">
           <FadeUp>
-            <p className="text-[0.62rem] uppercase tracking-[0.42em] text-[color:var(--color-charcoal-soft)]">
+            <p className="mx-auto w-fit text-[0.62rem] uppercase tracking-[0.42em] text-[color:var(--color-charcoal-soft)]">
               {product.name} · {formatINR(product.priceINR)}
             </p>
           </FadeUp>
@@ -276,7 +276,7 @@ function OilProductPage({ oil }: { oil: FragranceOil }) {
       <section className="border-t border-[color:var(--color-rule)] py-[var(--spacing-section)]">
         <div className="mx-auto max-w-[var(--container-content)] px-6 text-center md:px-10">
           <FadeUp>
-            <p className="text-[0.62rem] uppercase tracking-[0.42em] text-[color:var(--color-charcoal-soft)]">
+            <p className="mx-auto w-fit text-[0.62rem] uppercase tracking-[0.42em] text-[color:var(--color-charcoal-soft)]">
               {oil.name} · {formatINR(oil.priceINR)} · {oil.volumeML} ml
             </p>
           </FadeUp>
