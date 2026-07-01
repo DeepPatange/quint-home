@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { FadeUp } from "@/components/motion/fade-up";
 import { Monogram } from "@/components/brand/logo";
 
@@ -59,11 +60,26 @@ export function SmartHome() {
         <FadeUp delay={0.25}>
           <div className="mt-16 border-t border-[color:var(--color-stardust)]/15 pt-12">
             <div className="mx-auto flex flex-col items-center gap-2.5 text-[0.86rem] uppercase tracking-[0.2em] text-[color:var(--color-stardust)]/90 sm:flex-row sm:flex-wrap sm:justify-center sm:gap-x-6 sm:gap-y-3">
-              <span>Waterless Diffusers</span>
+              <Link
+                href="/shop#diffusers"
+                className="transition-colors duration-300 hover:text-[color:var(--color-stardust)]"
+              >
+                Waterless Diffusers
+              </Link>
               <span className="hidden text-[color:var(--color-stardust)]/35 sm:inline">·</span>
-              <span>Reed Diffusers &amp; Candles</span>
+              <Link
+                href="/shop"
+                className="transition-colors duration-300 hover:text-[color:var(--color-stardust)]"
+              >
+                Reed Diffusers &amp; Candles
+              </Link>
               <span className="hidden text-[color:var(--color-stardust)]/35 sm:inline">·</span>
-              <span>Fragrance Oils</span>
+              <Link
+                href="/shop#oils"
+                className="transition-colors duration-300 hover:text-[color:var(--color-stardust)]"
+              >
+                Fragrance Oils
+              </Link>
             </div>
           </div>
         </FadeUp>
