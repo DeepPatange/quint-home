@@ -74,8 +74,12 @@ export function Footer() {
         <div className="grid gap-10 pt-14 md:grid-cols-4">
           <div>
             <p className="font-eyebrow mb-5">Quint Home</p>
-            <p className="max-w-[24ch] text-[0.92rem] leading-[1.7] text-[color:var(--color-charcoal-soft)]">
-              Hotel-grade fragrance for the considered Indian home. Designed in Mumbai.
+            <p className="max-w-[34ch] text-[0.92rem] leading-[1.7] text-[color:var(--color-charcoal-soft)]">
+              A contemporary home and atmosphere brand creating objects at the
+              intersection of fragrance, design and innovation.
+            </p>
+            <p className="mt-3 max-w-[34ch] text-[0.92rem] leading-[1.7] text-[color:var(--color-charcoal-soft)]">
+              Crafted for homes that feel as beautiful as they look.
             </p>
             <p className="mt-6 text-[0.78rem] tracking-[0.06em] text-[color:var(--color-charcoal-soft)]">
               <a
