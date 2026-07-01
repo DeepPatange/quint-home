@@ -182,7 +182,7 @@ export function Hero() {
       )}
 
       {/* === Bottom hairline metadata strip === */}
-      <div className="relative z-20 mx-auto w-full max-w-[var(--container-full)] border-t border-[color:var(--color-white)]/20 px-6 md:px-10">
+      <div className="relative z-20 mx-auto w-[100%] max-w-[var(--container-full)] border-t border-[color:var(--color-white)]/20 px-6 md:px-10">
         <div className="flex flex-wrap items-center justify-between gap-x-8 gap-y-3 py-5 text-[0.6rem] uppercase tracking-[0.36em] text-[color:var(--color-white)]/75">
           <span>Diffusers</span>
           <span className="hidden md:inline">Fragrance Oils</span>

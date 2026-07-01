@@ -199,7 +199,7 @@ export function ScentFinder() {
                       onMouseLeave={() => setHovered(null)}
                       onFocus={() => setHovered(m.key)}
                       onClick={() => setMood(m.key)}
-                      className="group flex w-full items-center justify-between gap-4 border-t border-[color:var(--color-rule)] py-4 text-left outline-none last:border-b"
+                      className="group flex w-[100%] items-center justify-between gap-4 border-t border-[color:var(--color-rule)] py-4 text-left outline-none last:border-b"
                     >
                       <span>
                         <span
@@ -248,7 +248,7 @@ export function ScentFinder() {
                       key={a.key}
                       type="button"
                       onClick={() => setAccord(a.key)}
-                      className="group flex w-full items-center justify-between gap-4 border-t border-[color:var(--color-rule)] py-4 text-left outline-none last:border-b"
+                      className="group flex w-[100%] items-center justify-between gap-4 border-t border-[color:var(--color-rule)] py-4 text-left outline-none last:border-b"
                     >
                       <span>
                         <span

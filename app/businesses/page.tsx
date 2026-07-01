@@ -69,7 +69,7 @@ export default function BusinessesPage() {
               "linear-gradient(180deg, rgba(28,35,28,0.55) 0%, rgba(28,35,28,0.30) 40%, rgba(28,35,28,0.92) 100%)",
           }}
         />
-        <div className="relative z-10 mx-auto w-full max-w-[var(--container-full)] px-6 pb-14 md:px-10 md:pb-20">
+        <div className="relative z-10 mx-auto w-[100%] max-w-[var(--container-full)] px-6 pb-14 md:px-10 md:pb-20">
           <FadeUp>
             <p className="text-[0.62rem] uppercase tracking-[0.42em] text-[color:var(--color-stardust)]/75">
               For Businesses
@@ -158,7 +158,7 @@ export default function BusinessesPage() {
               "linear-gradient(90deg, rgba(28,35,28,0.92) 0%, rgba(28,35,28,0.62) 50%, rgba(28,35,28,0.22) 100%)",
           }}
         />
-        <div className="relative z-10 mx-auto w-full max-w-[var(--container-full)] px-6 md:px-10">
+        <div className="relative z-10 mx-auto w-[100%] max-w-[var(--container-full)] px-6 md:px-10">
           <FadeUp>
             <h2
               className="max-w-[18ch] text-balance text-[color:var(--color-white)]"
