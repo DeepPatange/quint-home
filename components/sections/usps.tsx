@@ -88,21 +88,21 @@ export function USPs() {
           </div>
         </FadeUp>
 
-        {/* Cards — uniform square tiles, 2-up on mobile (last one centred); a 5-up row on desktop */}
-        <div className="flex flex-wrap justify-center gap-3 md:grid md:grid-cols-3 md:gap-4 lg:grid-cols-5">
+        {/* Cards — swipeable 3:2 carousel with peek on mobile, a 5-up row on desktop */}
+        <div className="-mx-6 flex snap-x snap-mandatory gap-3 overflow-x-auto px-6 pb-1 [scrollbar-width:none] md:mx-0 md:grid md:grid-cols-5 md:gap-4 md:overflow-visible md:px-0 md:pb-0 [&::-webkit-scrollbar]:hidden">
           {usps.map((u, i) => (
             <FadeUp
               key={u.n}
               delay={(i % 5) * 0.05}
-              className="w-[calc(50%_-_0.375rem)] md:w-auto md:h-[100%]"
+              className="w-[80%] shrink-0 snap-start sm:w-[47%] md:h-[100%] md:w-auto md:shrink"
             >
               <article className="group flex h-[100%] flex-col overflow-hidden border border-[color:var(--color-rule)] bg-[color:var(--color-white)] transition-shadow duration-500 hover:shadow-[0_24px_50px_-30px_rgba(58,53,50,0.45)]">
-                <div className="relative aspect-square overflow-hidden bg-[color:var(--color-stardust-soft)] md:aspect-[4/3]">
+                <div className="relative aspect-[3/2] overflow-hidden bg-[color:var(--color-stardust-soft)]">
                   <Image
                     src={u.image}
                     alt={u.lead}
                     fill
-                    sizes="(min-width: 1024px) 18vw, (min-width: 640px) 45vw, 90vw"
+                    sizes="(min-width: 1024px) 18vw, (min-width: 768px) 30vw, 80vw"
                     className="object-cover transition-transform duration-[1400ms] ease-[var(--ease-quint)] group-hover:scale-[1.05]"
                   />
                 </div>
@@ -127,6 +127,11 @@ export function USPs() {
             </FadeUp>
           ))}
         </div>
+
+        {/* Swipe hint — mobile only */}
+        <p className="mt-4 text-[0.58rem] uppercase tracking-[0.32em] text-[color:var(--color-charcoal-soft)] md:hidden">
+          Swipe to explore →
+        </p>
       </div>
     </section>
   );
