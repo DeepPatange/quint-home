@@ -28,13 +28,6 @@ const slides: Slide[] = [
     position: "center 50%",
   },
   { type: "video", src: "/videos/hero-3.mp4" },
-  {
-    type: "image",
-    src: "/images/hero-2.webp",
-    alt: "Quint diffuser with a fragrance oil bottle and driftwood",
-    position: "center 50%",
-  },
-  { type: "video", src: "/videos/hero-4.mp4", hideHeader: true },
 ];
 
 const IMAGE_MS = 5000;
