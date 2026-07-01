@@ -33,45 +33,32 @@ const testimonials = [
       "Guests ask about the scent at the front desk almost every day. It's become part of how they remember us.",
     name: "General Manager",
     role: "A boutique hotel",
+    image: "/images/udaipur/udaipur-2.webp",
   },
   {
     quote:
       "We put it in eleven stores in a quarter. Same scent everywhere, almost no upkeep.",
     name: "Retail Operations",
     role: "A lifestyle brand",
+    image: "/images/indoor/indoor-02.webp",
   },
   {
     quote:
       "The café smells the way we always wanted it to. People sit longer now.",
     name: "Founder",
     role: "A Mumbai restaurant group",
+    image: "/images/indoor/indoor-01.webp",
   },
 ];
 
 export default function BusinessesPage() {
   return (
     <article className="bg-[color:var(--color-white)]">
-      {/* ===== HERO — full-bleed image ===== */}
-      <section className="relative isolate flex min-h-[72svh] items-end overflow-hidden text-[color:var(--color-stardust)]">
-        <Image
-          src="/images/indoor/indoor-03.webp"
-          alt="A hotel interior with a diffuser running"
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover"
-        />
-        <div
-          aria-hidden="true"
-          className="absolute inset-0"
-          style={{
-            background:
-              "linear-gradient(180deg, rgba(28,35,28,0.55) 0%, rgba(28,35,28,0.30) 40%, rgba(28,35,28,0.92) 100%)",
-          }}
-        />
-        <div className="relative z-10 mx-auto w-[100%] max-w-[var(--container-full)] px-6 pb-14 md:px-10 md:pb-20">
+      {/* ===== HERO — text on brand green ===== */}
+      <section className="border-b border-[color:var(--color-stardust)]/10 bg-[color:var(--color-verdant)] pb-[var(--spacing-section)] pt-16 text-[color:var(--color-stardust)] md:pt-24">
+        <div className="mx-auto w-[100%] max-w-[var(--container-full)] px-6 md:px-10">
           <FadeUp>
-            <p className="text-[0.62rem] uppercase tracking-[0.42em] text-[color:var(--color-stardust)]/75">
+            <p className="text-[0.62rem] uppercase tracking-[0.42em] text-[color:var(--color-stardust)]/70">
               For Businesses
             </p>
           </FadeUp>
@@ -87,13 +74,13 @@ export default function BusinessesPage() {
               }}
             >
               Scent your{" "}
-              <em className="not-italic text-[color:var(--color-white)]">
+              <em className="not-italic text-[color:var(--color-aerial)]">
                 space.
               </em>
             </h1>
           </FadeUp>
           <FadeUp delay={0.12}>
-            <p className="mt-6 max-w-[44ch] text-[var(--text-base)] leading-[1.7] text-[color:var(--color-stardust)]/85">
+            <p className="mt-7 max-w-[44ch] text-[var(--text-base)] leading-[1.7] text-[color:var(--color-stardust)]/80">
               Commercial scenting for hotels, restaurants, retail and
               workspaces.
             </p>
@@ -187,23 +174,32 @@ export default function BusinessesPage() {
               From our clients
             </p>
           </FadeUp>
-          <div className="grid gap-10 md:grid-cols-3 md:gap-x-14">
+          <div className="grid gap-10 md:grid-cols-3 md:gap-x-12">
             {testimonials.map((t, i) => (
-              <FadeUp key={i} delay={i * 0.06}>
-                <figure className="border-t border-[color:var(--color-rule)] pt-6">
+              <FadeUp key={i} delay={i * 0.06} className="h-[100%]">
+                <figure className="flex h-[100%] flex-col">
+                  <div className="relative aspect-[4/3] overflow-hidden bg-[color:var(--color-stardust-soft)]">
+                    <Image
+                      src={t.image}
+                      alt={t.role}
+                      fill
+                      sizes="(min-width: 768px) 31vw, 90vw"
+                      className="object-cover"
+                    />
+                  </div>
                   <blockquote
-                    className="text-balance"
+                    className="mt-7 flex-1 text-balance"
                     style={{
                       fontFamily: "var(--font-serif)",
-                      fontSize: "var(--text-lg)",
-                      lineHeight: 1.4,
-                      letterSpacing: "-0.01em",
+                      fontSize: "var(--text-2xl)",
+                      lineHeight: 1.35,
+                      letterSpacing: "-0.012em",
                       fontStyle: "italic",
                     }}
                   >
                     &ldquo;{t.quote}&rdquo;
                   </blockquote>
-                  <figcaption className="mt-5 text-[0.62rem] uppercase tracking-[0.28em] text-[color:var(--color-charcoal-soft)]">
+                  <figcaption className="mt-6 border-t border-[color:var(--color-rule)] pt-4 text-[0.62rem] uppercase tracking-[0.28em] text-[color:var(--color-charcoal-soft)]">
                     {t.name} · {t.role}
                   </figcaption>
                 </figure>

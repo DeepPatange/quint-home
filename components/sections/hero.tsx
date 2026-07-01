@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 /**
  * Home Hero — full-bleed carousel.
@@ -19,7 +19,7 @@ type Slide =
       alt: string;
       position?: string;
     }
-  | { type: "video"; src: string; hideHeader?: boolean };
+  | { type: "video"; src: string; hideHeader?: boolean; desktopOnly?: boolean };
 
 const slides: Slide[] = [
   {
@@ -36,7 +36,7 @@ const slides: Slide[] = [
     alt: "A couple relaxing in a sunlit living room with a Quint diffuser",
     position: "center 50%",
   },
-  { type: "video", src: "/videos/hero-3.mp4" },
+  { type: "video", src: "/videos/hero-3.mp4", desktopOnly: true },
 ];
 
 const IMAGE_MS = 5000;
@@ -48,7 +48,31 @@ export function Hero() {
   const [soundOn, setSoundOn] = useState(false);
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
 
-  const goTo = (i: number) => setIndex((i + slides.length) % slides.length);
+  // Phones skip desktop-only slides (e.g. the second video) for a tighter loop.
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 767px)");
+    const update = () => setIsMobile(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+
+  const activeSlides = useMemo(
+    () =>
+      isMobile
+        ? slides.filter((s) => !(s.type === "video" && s.desktopOnly))
+        : slides,
+    [isMobile]
+  );
+
+  // Keep the index in range when the active set changes.
+  useEffect(() => {
+    setIndex((i) => (i >= activeSlides.length ? 0 : i));
+  }, [activeSlides.length]);
+
+  const goTo = (i: number) =>
+    setIndex((i + activeSlides.length) % activeSlides.length);
 
   const toggleSound = () => {
     setSoundOn((on) => {
@@ -62,13 +86,13 @@ export function Hero() {
     });
   };
 
-  const currentIsVideo = slides[index].type === "video";
+  const currentIsVideo = activeSlides[index].type === "video";
 
   // Auto-advance: images on a 5s timer; the video advances itself on `ended`.
   useEffect(() => {
-    if (slides[index].type !== "image") return;
+    if (activeSlides[index].type !== "image") return;
     const t = setTimeout(
-      () => setIndex((i) => (i + 1) % slides.length),
+      () => setIndex((i) => (i + 1) % activeSlides.length),
       IMAGE_MS
     );
     return () => clearTimeout(t);
@@ -76,7 +100,7 @@ export function Hero() {
 
   // Only the active video plays, always from the start.
   useEffect(() => {
-    slides.forEach((s, i) => {
+    activeSlides.forEach((s, i) => {
       if (s.type !== "video") return;
       const v = videoRefs.current[i];
       if (!v) return;
@@ -93,7 +117,7 @@ export function Hero() {
 
   // Some slides (e.g. the water video) ask the floating header to step aside.
   useEffect(() => {
-    const cur = slides[index];
+    const cur = activeSlides[index];
     const hide = cur.type === "video" && cur.hideHeader === true;
     window.dispatchEvent(new CustomEvent("quint:hide-header", { detail: hide }));
   }, [index]);
@@ -104,7 +128,7 @@ export function Hero() {
       className="relative isolate flex min-h-[92svh] flex-col justify-end overflow-hidden text-[color:var(--color-white)]"
     >
       {/* Slides (cross-fade) */}
-      {slides.map((s, i) => (
+      {activeSlides.map((s, i) => (
         <div
           key={i}
           aria-hidden={i !== index}
