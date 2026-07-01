@@ -13,7 +13,7 @@ const slides: Slide[] = [
   { src: "/images/vibe/vibe-16.webp", alt: "Late sun scattered across water", eyebrow: "Surface", caption: "Afternoon sun on the water." },
   { src: "/images/vibe/vibe-20.webp", alt: "A figure running through a golden field", eyebrow: "Golden Hour", caption: "Running through a field at golden hour." },
   { src: "/images/vibe/vibe-22.webp", alt: "A study in late afternoon light", eyebrow: "The Study", caption: "Late afternoon in a quiet room." },
-  { src: "/images/vibe/vibe-13.webp", alt: "An interior in thin winter light", eyebrow: "Winter Light", caption: "Thin winter light through old glass." },
+  { src: "/images/vibe/vibe-09.webp", alt: "A concrete room opened to a forest", eyebrow: "Sanctuary", caption: "A room opened to the trees." },
   { src: "/images/vibe/vibe-21.webp", alt: "A still, quiet room", eyebrow: "Stillness", caption: "A still, quiet room." },
 ];
 

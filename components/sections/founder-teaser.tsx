@@ -42,8 +42,8 @@ export function FounderTeaser() {
               <figure>
                 <div className="relative aspect-[4/5] overflow-hidden bg-[color:var(--color-aerial-soft)]">
                   <Image
-                    src="/images/vibe/vibe-21.webp"
-                    alt="A warm mid-century room, late afternoon"
+                    src="/images/vibe/vibe-19.webp"
+                    alt="Afternoon light across a warm wall"
                     fill
                     sizes="(min-width: 768px) 24vw, 50vw"
                     className="object-cover"
