@@ -8,13 +8,21 @@ import { AddToBag } from "@/components/product/add-to-bag";
 import { PairBundle, type PairOption } from "@/components/product/pair-bundle";
 import { diffusers } from "@/lib/data/diffusers";
 import type { FragranceOil } from "@/lib/types";
+import type { ShopifyCommerce } from "@/lib/shopify/commerce";
 
 /**
  * Oil PDP — bottle study on the left (sticky), and a single right column that
  * carries the buy box, then the overview, the notes and the specifications.
  * Mirrors the diffuser PDP layout. Oils keep the subscribe & save option.
  */
-export function OilHero({ oil }: { oil: FragranceOil }) {
+export function OilHero({
+  oil,
+  commerce,
+}: {
+  oil: FragranceOil;
+  commerce?: ShopifyCommerce;
+}) {
+  const variant = commerce?.variants[0];
   // Pair-with-a-diffuser options for the bundle control.
   const diffuserOptions: PairOption[] = diffusers.map((d) => ({
     slug: d.slug,
@@ -108,7 +116,11 @@ export function OilHero({ oil }: { oil: FragranceOil }) {
 
           <FadeUp delay={0.18}>
             <div className="mt-8">
-              <AddToBag priceINR={oil.priceINR} />
+              <AddToBag
+                priceINR={variant?.price ?? oil.priceINR}
+                variantId={variant?.id}
+                available={variant?.available ?? true}
+              />
             </div>
           </FadeUp>
 

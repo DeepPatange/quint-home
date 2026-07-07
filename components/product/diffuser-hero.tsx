@@ -8,6 +8,7 @@ import { PairBundle, type PairOption } from "@/components/product/pair-bundle";
 import { oils, oilNoteSummary } from "@/lib/data/oils";
 import { cn } from "@/lib/utils";
 import type { Diffuser } from "@/lib/types";
+import type { ShopifyCommerce } from "@/lib/shopify/commerce";
 
 /**
  * Diffuser PDP — images on the left (sticky), and a single right column that
@@ -16,10 +17,22 @@ import type { Diffuser } from "@/lib/types";
  * the gallery + finish in place for multi-finish models (e.g. the A326 in
  * gold / black).
  */
-export function DiffuserHero({ product }: { product: Diffuser }) {
+export function DiffuserHero({
+  product,
+  commerce,
+}: {
+  product: Diffuser;
+  commerce?: ShopifyCommerce;
+}) {
   const colors = product.colors;
   const [active, setActive] = useState(0);
   const color = colors?.[active];
+
+  // Match the Shopify variant to the selected finish (or the sole variant).
+  const variant =
+    colors && colors.length > 1
+      ? commerce?.variants.find((v) => v.options.Finish === color?.name)
+      : commerce?.variants[0];
 
   const gallery = color?.gallery ?? product.gallery;
 
@@ -200,7 +213,12 @@ export function DiffuserHero({ product }: { product: Diffuser }) {
           <FadeUp delay={0.22}>
             <div className="mt-8">
               {/* No subscribe & save on diffusers — that offer is for the oils only */}
-              <AddToBag priceINR={product.priceINR} subscribeOffer={false} />
+              <AddToBag
+                priceINR={variant?.price ?? product.priceINR}
+                subscribeOffer={false}
+                variantId={variant?.id}
+                available={variant?.available ?? true}
+              />
             </div>
           </FadeUp>
 

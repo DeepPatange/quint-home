@@ -11,18 +11,18 @@ export const metadata: Metadata = {
 const offerings = [
   {
     no: "01",
-    title: "Commercial machines",
-    body: "Lobby- to floor-scale diffusers, built to run continuously.",
+    title: "Commercial Machines",
+    body: "Designed for continuous use, from compact entryways to full-floor coverage.",
   },
   {
     no: "02",
-    title: "Bulk orders",
-    body: "Volume pricing on devices and oils for multi-site rollouts.",
+    title: "Bulk Orders",
+    body: "Preferential pricing on devices and oils for multi-site and multi-location rollouts.",
   },
   {
     no: "03",
-    title: "Signature scent",
-    body: "A custom fragrance made for your brand alone.",
+    title: "Signature Scents",
+    body: "A fragrance developed exclusively for you — and no one else.",
   },
 ];
 
@@ -81,8 +81,8 @@ export default function BusinessesPage() {
           </FadeUp>
           <FadeUp delay={0.12}>
             <p className="mt-7 max-w-[44ch] text-[var(--text-base)] leading-[1.7] text-[color:var(--color-stardust)]/80">
-              Commercial scenting for hotels, restaurants, retail and
-              workspaces.
+              Fragrance devices and customization for hospitality, dining,
+              retail and exclusive spaces.
             </p>
           </FadeUp>
         </div>

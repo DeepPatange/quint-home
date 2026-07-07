@@ -8,6 +8,7 @@ import { formatINR } from "@/lib/utils";
 import { FadeUp } from "@/components/motion/fade-up";
 import { DiffuserHero } from "@/components/product/diffuser-hero";
 import { OilHero } from "@/components/product/oil-hero";
+import { getCommerceByName } from "@/lib/shopify/commerce";
 import { ScentFinder } from "@/components/sections/scent-finder";
 import type { FragranceOil } from "@/lib/types";
 
@@ -54,10 +55,12 @@ export default async function ProductPage({
     .sort((a, b) => (a.tier === "hotel-credential" ? -1 : 1))
     .slice(0, 4);
 
+  const commerce = await getCommerceByName(product.name);
+
   return (
     <article id="top" className="bg-[color:var(--color-white)]">
       {/* §  PRODUCT  —  images left; overview, key features & technical specs on the right */}
-      <DiffuserHero product={product} />
+      <DiffuserHero product={product} commerce={commerce} />
 
 
       {/* ====================================================
@@ -156,14 +159,16 @@ export default async function ProductPage({
 //  NOTE: feature copy below is placeholder ("random for now") — to be
 //  replaced with final per-oil detail once supplied.
 // ============================================================
-function OilProductPage({ oil }: { oil: FragranceOil }) {
+async function OilProductPage({ oil }: { oil: FragranceOil }) {
   // Diffusers this oil pairs into — the buy box bundles them; this reinforces it.
   const pairDiffusers = diffusers.slice(0, 4);
+
+  const commerce = await getCommerceByName(oil.name);
 
   return (
     <article id="top" className="bg-[color:var(--color-white)]">
       {/* §  PRODUCT — gallery + buy box + bundle */}
-      <OilHero oil={oil} />
+      <OilHero oil={oil} commerce={commerce} />
 
       {/* §  FIND YOUR SCENT */}
       <ScentFinder />

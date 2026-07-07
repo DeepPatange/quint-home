@@ -2,15 +2,27 @@
 
 import { useState } from "react";
 import { cn } from "@/lib/utils";
+import { useCart } from "@/components/cart/cart-provider";
 
 interface Props {
   priceINR: number;
   subscribeOffer?: boolean;
+  /** Shopify variant id for the current selection — required to add to bag. */
+  variantId?: string;
+  /** Whether the selected variant is in stock. */
+  available?: boolean;
 }
 
-export function AddToBag({ priceINR, subscribeOffer = true }: Props) {
+export function AddToBag({
+  priceINR,
+  subscribeOffer = true,
+  variantId,
+  available = true,
+}: Props) {
   const [mode, setMode] = useState<"one-time" | "subscribe">("one-time");
   const subscribePrice = Math.round(priceINR * 0.85);
+  const { add, pending } = useCart();
+  const soldOut = !available;
 
   return (
     <div className="grid gap-5">
@@ -92,12 +104,18 @@ export function AddToBag({ priceINR, subscribeOffer = true }: Props) {
 
       <button
         type="button"
-        className="group relative mt-2 inline-flex h-14 items-center justify-center gap-3 overflow-hidden bg-[color:var(--color-charcoal)] px-8 text-[0.74rem] uppercase tracking-[0.32em] text-[color:var(--color-ivory)] transition-colors duration-500 hover:bg-[color:var(--color-clay-deep)]"
+        disabled={soldOut || !variantId || pending}
+        onClick={() => variantId && add(variantId)}
+        className="group relative mt-2 inline-flex h-14 items-center justify-center gap-3 overflow-hidden bg-[color:var(--color-charcoal)] px-8 text-[0.74rem] uppercase tracking-[0.32em] text-[color:var(--color-ivory)] transition-colors duration-500 hover:bg-[color:var(--color-clay-deep)] disabled:cursor-not-allowed disabled:opacity-50"
       >
-        <span className="relative z-10">Add to bag</span>
-        <span className="relative z-10 transition-transform duration-500 group-hover:translate-x-1">
-          →
+        <span className="relative z-10">
+          {soldOut ? "Sold out" : pending ? "Adding…" : "Add to bag"}
         </span>
+        {!soldOut && (
+          <span className="relative z-10 transition-transform duration-500 group-hover:translate-x-1">
+            →
+          </span>
+        )}
       </button>
 
       <p className="mt-1 text-[0.7rem] uppercase tracking-[0.24em] text-[color:var(--color-charcoal-soft)]">

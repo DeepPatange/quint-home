@@ -6,8 +6,10 @@ import { SectionHeader } from "@/components/ui/section-header";
 import { HCarousel } from "@/components/ui/h-carousel";
 import { Monogram } from "@/components/brand/logo";
 import { formatINR } from "@/lib/utils";
+import { getCommerceMap, shopifyHandle } from "@/lib/shopify/commerce";
 
-export function ScentLibrary() {
+export async function ScentLibrary() {
+  const commerce = await getCommerceMap();
   return (
     <section className="bg-[color:var(--color-ivory)] pt-[var(--spacing-section-sm)] pb-[var(--spacing-section)]">
       <div className="mx-auto max-w-[var(--container-full)] px-6 md:px-10">
@@ -92,7 +94,7 @@ export function ScentLibrary() {
                       {o.name}
                     </h3>
                     <span className="shrink-0 text-[0.8rem] tabular-nums opacity-90">
-                      {formatINR(o.priceINR)}
+                      {formatINR(commerce[shopifyHandle(o.name)]?.minPrice ?? o.priceINR)}
                     </span>
                   </div>
                   </Link>

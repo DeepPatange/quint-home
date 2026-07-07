@@ -7,6 +7,7 @@ import { oils } from "@/lib/data/oils";
 import { formatINR } from "@/lib/utils";
 import { FadeUp } from "@/components/motion/fade-up";
 import { ShopBrowser } from "@/components/shop/shop-browser";
+import { getCommerceMap, shopifyHandle } from "@/lib/shopify/commerce";
 
 export const metadata: Metadata = {
   title: "Shop",
@@ -14,7 +15,11 @@ export const metadata: Metadata = {
     "Diffusers and fragrance oils — the full Quint Home range. IFRA-compliant.",
 };
 
-export default function ShopPage() {
+export default async function ShopPage() {
+  // Live prices from Shopify (falls back to the code price if unavailable).
+  const commerce = await getCommerceMap();
+  const priceOf = (name: string, fallback: number) =>
+    commerce[shopifyHandle(name)]?.minPrice ?? fallback;
   return (
     <article className="bg-[color:var(--color-white)]">
       {/* ====================================================
@@ -85,10 +90,10 @@ export default function ShopPage() {
                 </h2>
               </div>
               <p className="max-w-[28ch] text-[0.86rem] leading-[1.65] text-[color:var(--color-charcoal-soft)] md:text-right">
-                Aluminium, fabric, acrylic and glass. Waterless, near-silent, controlled from the app.
+                Aluminium, fabric and acrylic. Waterless, near-silent, controlled from the app.
                 <br />
                 <span className="text-[0.6rem] uppercase tracking-[0.32em]">
-                  Coverage to ~1,075 sq ft →
+                  Coverage up to ~1,075 sq ft →
                 </span>
               </p>
             </div>
@@ -133,7 +138,7 @@ export default function ShopPage() {
                         {d.name}
                       </h3>
                       <span className="tabular-nums text-[0.9rem]">
-                        {formatINR(d.priceINR)}
+                        {formatINR(priceOf(d.name, d.priceINR))}
                       </span>
                     </div>
                     <p className="max-w-[38ch] text-[0.92rem] leading-[1.65] text-[color:var(--color-charcoal-soft)]">
@@ -272,7 +277,7 @@ export default function ShopPage() {
                           {o.name}
                         </h3>
                         <span className="tabular-nums text-[0.9rem] text-[color:var(--color-charcoal)]">
-                          {formatINR(o.priceINR)}
+                          {formatINR(priceOf(o.name, o.priceINR))}
                         </span>
                       </div>
 

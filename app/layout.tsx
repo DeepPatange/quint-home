@@ -7,6 +7,8 @@ import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { Grain } from "@/components/atmosphere/grain";
 import { ImageGuard } from "@/components/atmosphere/image-guard";
+import { CartProvider } from "@/components/cart/cart-provider";
+import { CartDrawer } from "@/components/cart/cart-drawer";
 
 export const metadata: Metadata = {
   title: {
@@ -33,14 +35,20 @@ export default function RootLayout({
       lang="en"
       className={`${literata.variable} ${inter.variable} antialiased`}
     >
-      <body className="flex min-h-screen flex-col bg-[color:var(--color-white)] text-[color:var(--color-charcoal)]">
-        <LenisProvider />
-        <ImageGuard />
-        <Grain />
-        <AnnouncementBar />
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
+      <body
+        suppressHydrationWarning
+        className="flex min-h-screen flex-col bg-[color:var(--color-white)] text-[color:var(--color-charcoal)]"
+      >
+        <CartProvider>
+          <LenisProvider />
+          <ImageGuard />
+          <Grain />
+          <AnnouncementBar />
+          <Header />
+          <main className="flex-1">{children}</main>
+          <Footer />
+          <CartDrawer />
+        </CartProvider>
       </body>
     </html>
   );

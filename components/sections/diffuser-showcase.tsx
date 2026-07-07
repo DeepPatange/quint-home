@@ -5,13 +5,15 @@ import { formatINR } from "@/lib/utils";
 import { FadeUp } from "@/components/motion/fade-up";
 import { HCarousel } from "@/components/ui/h-carousel";
 import { Monogram } from "@/components/brand/logo";
+import { getCommerceMap, shopifyHandle } from "@/lib/shopify/commerce";
 
 /**
  * Diffuser Showcase — features the full diffuser range in editorial cards.
  * Replaces the old generic "Diffusers vs Oils" CategoryDuo with something that
  * actually tells the buyer what they are choosing between.
  */
-export function DiffuserShowcase() {
+export async function DiffuserShowcase() {
+  const commerce = await getCommerceMap();
   return (
     <section className="bg-[color:var(--color-white)] pt-[var(--spacing-section)] pb-[var(--spacing-section-sm)]">
       <div className="mx-auto max-w-[var(--container-full)] px-6 md:px-10">
@@ -91,7 +93,7 @@ export function DiffuserShowcase() {
                       {d.name}
                     </h3>
                     <span className="tabular-nums text-[0.9rem]">
-                      {formatINR(d.priceINR)}
+                      {formatINR(commerce[shopifyHandle(d.name)]?.minPrice ?? d.priceINR)}
                     </span>
                   </div>
                   <p className="max-w-[36ch] text-[0.92rem] leading-[1.65] text-[color:var(--color-charcoal-soft)]">

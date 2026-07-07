@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
+import { useCart } from "@/components/cart/cart-provider";
 import { Menu, Search, ShoppingBag, ChevronDown } from "lucide-react";
 import { Logo } from "@/components/brand/logo";
 import { cn } from "@/lib/utils";
@@ -31,6 +32,7 @@ export function Header() {
   const [pastHero, setPastHero] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [slideHidden, setSlideHidden] = useState(false);
+  const { count, setOpen: setCartOpen } = useCart();
   const lastY = useRef(0);
   // Accumulates scroll distance in the current direction. Lets the reveal work
   // even with smooth-scroll (Lenis) sub-pixel per-frame deltas.
@@ -214,16 +216,17 @@ export function Header() {
             >
               <Search className="h-[18px] w-[18px]" />
             </button>
-            <Link
-              href="/cart"
-              aria-label="Bag"
+            <button
+              type="button"
+              onClick={() => setCartOpen(true)}
+              aria-label={`Bag${count ? `, ${count} item${count === 1 ? "" : "s"}` : ""}`}
               className="relative flex items-center gap-2 transition-colors duration-300 hover:text-[color:var(--color-clay)]"
             >
               <ShoppingBag className="h-[18px] w-[18px]" />
               <span className="hidden text-[0.78rem] uppercase tracking-[0.18em] opacity-80 md:inline">
-                Bag (0)
+                Bag ({count})
               </span>
-            </Link>
+            </button>
           </div>
         </div>
       </header>
