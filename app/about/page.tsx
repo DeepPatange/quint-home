@@ -56,7 +56,7 @@ export default function AboutPage() {
       <section className="border-b border-[color:var(--color-rule)] bg-[color:var(--color-stardust-soft)] pt-14 pb-[var(--spacing-section)] md:pt-24">
         <div className="mx-auto max-w-[var(--container-full)] px-6 md:px-10">
           <FadeUp>
-            <div className="flex items-center gap-4 text-[0.62rem] uppercase tracking-[0.42em] text-[color:var(--color-charcoal-soft)]">
+            <div className="flex items-center gap-4 text-[0.82rem] uppercase tracking-[0.34em] text-[color:var(--color-charcoal-soft)]">
               <span><Monogram className="mr-1.5 inline-block h-[0.9em] w-[0.9em] align-[-0.12em]" />One · The Word</span>
               <span className="h-px flex-1 bg-[color:var(--color-rule)]" />
             </div>
@@ -141,7 +141,7 @@ export default function AboutPage() {
       <section className="py-[var(--spacing-section)]">
         <div className="mx-auto max-w-[var(--container-content)] px-6 md:px-10">
           <FadeUp>
-            <div className="flex items-center justify-center gap-4 text-[0.62rem] uppercase tracking-[0.42em] text-[color:var(--color-charcoal-soft)]">
+            <div className="flex items-center justify-center gap-4 text-[0.82rem] uppercase tracking-[0.34em] text-[color:var(--color-charcoal-soft)]">
               <span className="h-px w-10 bg-[color:var(--color-rule)]" />
               <span><Monogram className="mr-1.5 inline-block h-[0.9em] w-[0.9em] align-[-0.12em]" />Two · The Story</span>
               <span className="h-px w-10 bg-[color:var(--color-rule)]" />
@@ -307,7 +307,7 @@ export default function AboutPage() {
       <section className="bg-[color:var(--color-verdant)] py-[var(--spacing-section)] text-[color:var(--color-stardust)]">
         <div className="mx-auto max-w-[var(--container-full)] px-6 md:px-10">
           <FadeUp>
-            <div className="mb-12 flex items-center gap-4 text-[0.6rem] uppercase tracking-[0.42em] text-[color:var(--color-stardust)]/65">
+            <div className="mb-12 flex items-center gap-4 text-[0.82rem] uppercase tracking-[0.34em] text-[color:var(--color-stardust)]/65">
               <span className="h-px w-12 bg-[color:var(--color-stardust)]/25" />
               <span><Monogram className="mr-1.5 inline-block h-[0.9em] w-[0.9em] align-[-0.12em]" />Three · The Vision</span>
               <span className="h-px flex-1 bg-[color:var(--color-stardust)]/15" />

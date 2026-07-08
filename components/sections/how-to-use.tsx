@@ -18,7 +18,7 @@ const steps: {
     n: "01",
     title: "Fill the reservoir",
     body: "Add your chosen Quint Home fragrance oil. No water, no dilution – just the oil.",
-    img: "/images/diffusers/a326-gold/gold-v2-01.webp",
+    img: "/images/ritual/t302-tower-v2.webp",
     photo: true,
   },
   {
@@ -37,15 +37,14 @@ const steps: {
     n: "04",
     title: "It runs itself",
     body: "The diffuser follows your schedule automatically. No daily interaction required.",
-    img: "/images/diffusers/a326-gold/gold-v2-02.webp",
+    img: "/images/ritual/t302-panel-v2.webp",
     photo: true,
   },
   {
     n: "05",
     title: "Refill & swap",
     body: "Top up the oil as needed; change scents by season or mood through the app.",
-    img: "/images/diffusers/a326-gold/gold-v2-03.webp",
-    photo: true,
+    img: "/images/ritual/refill-swap.webp",
   },
 ];
 

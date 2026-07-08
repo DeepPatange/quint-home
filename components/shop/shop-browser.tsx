@@ -98,7 +98,7 @@ export function ShopBrowser() {
           ))}
 
           {/* Search – filters the full catalogue */}
-          <div className="relative ml-auto w-full sm:w-auto sm:min-w-[16rem]">
+          <div className="relative ml-auto w-[100%] sm:w-auto sm:min-w-[16rem]">
             <span
               aria-hidden="true"
               className="pointer-events-none absolute left-0 top-1/2 -translate-y-1/2 text-[0.8rem] text-[color:var(--color-charcoal-soft)]"
@@ -111,7 +111,7 @@ export function ShopBrowser() {
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Search products, scents, notes…"
               aria-label="Search products"
-              className="w-full border-b border-[color:var(--color-rule)] bg-transparent py-2 pl-6 pr-2 text-[0.82rem] text-[color:var(--color-charcoal)] outline-none transition-colors placeholder:text-[color:var(--color-charcoal-soft)] focus:border-[color:var(--color-charcoal)]"
+              className="w-[100%] border-b border-[color:var(--color-rule)] bg-transparent py-2 pl-6 pr-2 text-[0.82rem] text-[color:var(--color-charcoal)] outline-none transition-colors placeholder:text-[color:var(--color-charcoal-soft)] focus:border-[color:var(--color-charcoal)]"
             />
           </div>
         </div>

@@ -262,31 +262,8 @@ export function OilHero({
             </div>
           </FadeUp>
 
-          {/* --- Specifications --- */}
-          <FadeUp delay={0.06}>
-            <div className="mt-12 border-t border-[color:var(--color-rule)] pt-10">
-              <p className={sectionLabel}>Specifications</p>
-              <dl className="mt-6 border-t border-[color:var(--color-rule)]">
-                {techSpecs.map((s) => (
-                  <div
-                    key={s.label}
-                    className="grid grid-cols-[8.5rem_1fr] gap-4 border-b border-[color:var(--color-rule)] py-3.5"
-                  >
-                    <dt className="pt-0.5 text-[0.56rem] uppercase tracking-[0.26em] text-[color:var(--color-charcoal-soft)]">
-                      {s.label}
-                    </dt>
-                    <dd className="text-[0.9rem] leading-[1.5] text-[color:var(--color-charcoal)]">
-                      {s.value}
-                    </dd>
-                  </div>
-                ))}
-              </dl>
-              <p className="mt-6 text-[0.78rem] leading-[1.6] text-[color:var(--color-charcoal-soft)]">
-                For external use only. Do not spray directly on or near eyes,
-                face, or skin.
-              </p>
-            </div>
-          </FadeUp>
+          {/* Specifications live as the designed "Specs" slide in the gallery
+              (specsCard) — no duplicate text section here. */}
         </aside>
       </div>
     </section>

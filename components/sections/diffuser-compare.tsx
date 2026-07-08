@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { diffusers } from "@/lib/data/diffusers";
@@ -57,6 +58,18 @@ const FACTS: Record<string, Fact> = {
   },
 };
 
+/**
+ * Clean product renders used ONLY in this comparison table (keyed by model
+ * code). The shop grid, homepage and PDPs keep their own lifestyle imagery.
+ */
+const COMPARE_IMAGES: Record<string, string> = {
+  A815: "/images/diffusers/pebble-v3.webp",
+  A326: "/images/diffusers/monolith-v3.webp",
+  A974: "/images/diffusers/loom-v3.webp",
+  "A-T302": "/images/diffusers/pillar-v3.webp",
+  "A-T370": "/images/diffusers/ember-v3.webp",
+};
+
 const ROWS: { label: string; get: (d: Diffuser) => string }[] = [
   { label: "Coverage", get: (d) => d.coverageLabel },
   { label: "Power", get: (d) => FACTS[d.model].power },
@@ -105,85 +118,81 @@ export function DiffuserCompare({
           </div>
         </FadeUp>
 
+        {/* Phones can't fit five columns — swipe horizontally, labels pinned. */}
+        <p className="mb-4 text-[0.58rem] uppercase tracking-[0.3em] text-[color:var(--color-charcoal-soft)]/70 md:hidden">
+          Swipe to compare →
+        </p>
+
         <FadeUp delay={0.1}>
-          {/* Fixed layout so all 5 devices fit the width with no horizontal
-              scroll; small fixed thumbnails keep the header compact. */}
-          <table className="w-full table-fixed border-collapse text-left">
-            <colgroup>
-              <col className="w-[4.25rem] md:w-[7rem]" />
+          <div className="-mx-6 overflow-x-auto px-6 pb-2 md:mx-0 md:px-0">
+            <div className="grid min-w-[44rem] grid-cols-[5.5rem_repeat(5,minmax(0,1fr))] md:min-w-0 md:grid-cols-[8rem_repeat(5,minmax(0,1fr))]">
+              {/* ── Header row: empty corner + five device cards ── */}
+              {/* The box-shadow paints the same white leftward across the scroll
+                  container's 24px padding gap, so swiped-under content can't peek
+                  out beside the pinned label column. */}
+              <div className="sticky left-0 z-10 bg-[color:var(--color-white)] shadow-[-1.5rem_0_0_0_var(--color-white)]" />
               {diffusers.map((d) => (
-                <col key={d.model} />
-              ))}
-            </colgroup>
-            <thead>
-              <tr>
-                <th className="pb-4 pr-2 align-bottom" />
-                {diffusers.map((d) => (
-                  <th
-                    key={d.model}
-                    className={`px-1.5 pb-4 align-bottom ${
+                <Link
+                  key={d.model}
+                  href={`/shop/${d.slug}`}
+                  className="group flex flex-col text-center"
+                >
+                  {/* Bigger render, no backing box — always floats on white,
+                      never carries the column highlight. */}
+                  <div className="relative mx-auto mb-3.5 aspect-[3/4] w-24 sm:w-32 md:w-36">
+                    <Image
+                      src={COMPARE_IMAGES[d.model] ?? d.image}
+                      alt={d.name}
+                      fill
+                      sizes="160px"
+                      className="object-contain transition-transform duration-700 ease-[var(--ease-quint)] group-hover:scale-[1.06]"
+                    />
+                  </div>
+                  {/* Text block — the beige highlight starts here, below the image. */}
+                  <div
+                    className={`flex-1 px-2 pb-7 ${
                       d.model === highlightModel
                         ? "bg-[color:var(--color-stardust-soft)]"
                         : ""
                     }`}
                   >
-                    <Link
-                      href={`/shop/${d.slug}`}
-                      className="group block text-center"
-                    >
-                      <div className="relative mx-auto mb-2 aspect-[4/5] w-12 overflow-hidden bg-[color:var(--color-stardust-soft)] sm:w-16">
-                        <Image
-                          src={d.image}
-                          alt={d.name}
-                          fill
-                          sizes="64px"
-                          className="object-cover transition-transform duration-700 ease-[var(--ease-quint)] group-hover:scale-[1.04]"
-                        />
-                      </div>
-                      {d.model === highlightModel && (
-                        <span className="mb-0.5 block text-[0.44rem] uppercase tracking-[0.14em] text-[color:var(--color-clay)]">
-                          Viewing
-                        </span>
-                      )}
-                      <p className="font-[family-name:var(--font-serif)] text-[0.72rem] leading-tight transition-colors group-hover:text-[color:var(--color-clay)] sm:text-[0.85rem]">
-                        {d.name}
-                      </p>
-                      <p className="mt-0.5 text-[0.62rem] tabular-nums text-[color:var(--color-charcoal-soft)] sm:text-[0.72rem]">
-                        {formatINR(d.priceINR)}
-                      </p>
-                    </Link>
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
+                    {d.model === highlightModel && (
+                      <span className="mb-1 block text-[0.5rem] uppercase tracking-[0.16em] text-[color:var(--color-clay)]">
+                        Viewing
+                      </span>
+                    )}
+                    <p className="font-[family-name:var(--font-serif)] text-[0.95rem] leading-tight transition-colors group-hover:text-[color:var(--color-clay)]">
+                      {d.name}
+                    </p>
+                    <p className="mt-1 text-[0.8rem] tabular-nums text-[color:var(--color-charcoal-soft)]">
+                      {formatINR(d.priceINR)}
+                    </p>
+                  </div>
+                </Link>
+              ))}
+
+              {/* ── One row per spec: label + five values ── */}
               {ROWS.map((row) => (
-                <tr
-                  key={row.label}
-                  className="border-t border-[color:var(--color-rule)] align-top"
-                >
-                  <th
-                    scope="row"
-                    className="py-3 pr-2 text-[0.5rem] uppercase leading-tight tracking-[0.16em] text-[color:var(--color-charcoal-soft)]"
-                  >
+                <Fragment key={row.label}>
+                  <div className="sticky left-0 z-10 border-t border-[color:var(--color-rule)] bg-[color:var(--color-white)] py-4 pr-4 text-[0.56rem] uppercase leading-tight tracking-[0.2em] text-[color:var(--color-charcoal-soft)] shadow-[-1.5rem_0_0_0_var(--color-white)]">
                     {row.label}
-                  </th>
+                  </div>
                   {diffusers.map((d) => (
-                    <td
+                    <div
                       key={d.model}
-                      className={`px-1.5 py-3 text-[0.68rem] leading-snug text-[color:var(--color-charcoal)] sm:text-[0.76rem] ${
+                      className={`border-t border-[color:var(--color-rule)] px-2 py-4 text-[0.86rem] leading-[1.45] text-[color:var(--color-charcoal)] ${
                         d.model === highlightModel
                           ? "bg-[color:var(--color-stardust-soft)]"
                           : ""
                       }`}
                     >
                       {row.get(d)}
-                    </td>
+                    </div>
                   ))}
-                </tr>
+                </Fragment>
               ))}
-            </tbody>
-          </table>
+            </div>
+          </div>
         </FadeUp>
       </div>
     </section>

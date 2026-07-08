@@ -111,11 +111,11 @@ export function Hero() {
     });
   };
 
-  const currentIsVideo = activeSlides[index].type === "video";
+  const currentIsVideo = activeSlides[index]?.type === "video";
 
   // Auto-advance: images on a 5s timer; the video advances itself on `ended`.
   useEffect(() => {
-    if (activeSlides[index].type !== "image") return;
+    if (activeSlides[index]?.type !== "image") return;
     const t = setTimeout(
       () => setIndex((i) => (i + 1) % activeSlides.length),
       IMAGE_MS
@@ -143,7 +143,7 @@ export function Hero() {
   // Some slides (e.g. the water video) ask the floating header to step aside.
   useEffect(() => {
     const cur = activeSlides[index];
-    const hide = cur.type === "video" && cur.hideHeader === true;
+    const hide = cur?.type === "video" && cur.hideHeader === true;
     window.dispatchEvent(new CustomEvent("quint:hide-header", { detail: hide }));
   }, [index]);
 
@@ -206,7 +206,7 @@ export function Hero() {
               muted={!soundOn}
               playsInline
               preload="auto"
-              onEnded={() => setIndex((p) => (p + 1) % slides.length)}
+              onEnded={() => setIndex((p) => (p + 1) % activeSlides.length)}
               className="absolute inset-0 h-full w-[100%] object-cover"
             />
           )}
