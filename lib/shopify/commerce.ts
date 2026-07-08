@@ -105,9 +105,23 @@ export const getCommerceMap = cache(
 );
 
 /** Commerce data for one product, looked up by its display name. */
+/**
+ * Products renamed in the catalogue but not (yet) in Shopify. Maps the current
+ * name-derived handle to the handle(s) the store may still use, so the match
+ * survives a rename on either side. e.g. "Quietude" was relaunched as "Terrain".
+ */
+const HANDLE_ALIASES: Record<string, string[]> = {
+  terrain: ["quietude"],
+};
+
 export async function getCommerceByName(
   name: string
 ): Promise<ShopifyCommerce | undefined> {
   const map = await getCommerceMap();
-  return map[shopifyHandle(name)];
+  const handle = shopifyHandle(name);
+  if (map[handle]) return map[handle];
+  for (const alias of HANDLE_ALIASES[handle] ?? []) {
+    if (map[alias]) return map[alias];
+  }
+  return undefined;
 }
